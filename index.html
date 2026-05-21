@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Business Brasil — Conhecimento com Aplicação Prática</title>
-  <meta name="description" content="Uma plataforma nichada e restrita para empresários que buscam clareza, decisões aceleradas e crescimento operacional sustentável." />
+  <meta name="description"
+    content="Uma plataforma nichada e restrita para empresários que buscam clareza, decisões aceleradas e crescimento operacional sustentável." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Three.js + Vanta.js NET -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -41,27 +44,173 @@
     };
   </script>
   <style>
-    * { font-family: 'Montserrat', sans-serif; }
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
 
     /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #111; }
-    ::-webkit-scrollbar-thumb { background: #F2A900; border-radius: 3px; }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
 
-    /* Vanta hero container */
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #F2A900;
+      border-radius: 3px;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* =============================================
+       VANTA HERO
+    ============================================= */
     #vanta-hero {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
     }
 
-    /* Hero gradient overlay */
     .hero-overlay {
-      background: linear-gradient(180deg, rgba(11,11,11,0.25) 0%, rgba(11,11,11,0.72) 55%, rgba(11,11,11,1) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.65) 55%, rgba(0, 0, 0, 1) 100%);
     }
 
-    /* Gold gradient text */
+    /* =============================================
+       PARALLAX FRAME (section após hero)
+    ============================================= */
+    .parallax-frame {
+      position: relative;
+      overflow: hidden;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .parallax-frame .parallax-bg {
+      position: absolute;
+      inset: -80px 0;
+      background-image: url('img/bg_consultoria.png');
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+      transition: transform 0.1s linear;
+      opacity: 0.5;
+    }
+
+    .parallax-frame .parallax-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 0.6) 30%,
+          rgba(0, 0, 0, 0.6) 70%,
+          rgba(0, 0, 0, 1) 100%);
+    }
+
+    .parallax-frame .parallax-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 40px;
+    }
+
+    /* Floating gold orbs */
+    .parallax-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(242, 169, 0, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+      animation: orbFloat linear infinite;
+    }
+
+    @keyframes orbFloat {
+      0% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: translateY(-30px) scale(1.08);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.6;
+      }
+    }
+
+    /* Animated gold line accent */
+    .gold-line-scan {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #F2A900 30%, #FFD166 50%, #F2A900 70%, transparent 100%);
+      animation: scanLine 4s ease-in-out infinite;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes scanLine {
+      0% {
+        top: 0%;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      90% {
+        opacity: 0.4;
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    /* =============================================
+       SECTION SEPARATOR — angled cut
+    ============================================= */
+    .section-cut-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: inherit;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 60%);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .section-cut-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #000000;
+      clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 100%);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    /* =============================================
+       GOLD GRADIENT TEXT
+    ============================================= */
     .text-gold-gradient {
       background: linear-gradient(135deg, #F2A900 0%, #FFD166 50%, #C88A00 100%);
       -webkit-background-clip: text;
@@ -77,15 +226,22 @@
       position: relative;
       overflow: hidden;
     }
+
     .btn-gold::before {
       content: '';
       position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       transition: left 0.5s;
     }
-    .btn-gold:hover::before { left: 100%; }
+
+    .btn-gold:hover::before {
+      left: 100%;
+    }
+
     .btn-gold:hover {
       background: #FFD166;
       transform: translateY(-2px);
@@ -96,9 +252,10 @@
     .card-hover {
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     .card-hover:hover {
       transform: translateY(-6px);
-      box-shadow: 0 24px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(242,169,0,0.18);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(242, 169, 0, 0.18);
     }
 
     /* Nav link hover */
@@ -106,16 +263,25 @@
       position: relative;
       transition: color 0.3s;
     }
+
     .nav-link::after {
       content: '';
       position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 2px;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
       background: #F2A900;
       transition: width 0.3s;
     }
-    .nav-link:hover { color: #F2A900; }
-    .nav-link:hover::after { width: 100%; }
+
+    .nav-link:hover {
+      color: #F2A900;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
 
     /* Section reveal animation */
     .reveal {
@@ -123,6 +289,7 @@
       transform: translateY(30px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
@@ -134,22 +301,22 @@
       height: 3px;
       background: linear-gradient(90deg, #F2A900, #FFD166);
       border-radius: 2px;
-      box-shadow: 0 0 8px rgba(242,169,0,0.5);
+      box-shadow: 0 0 8px rgba(242, 169, 0, 0.5);
     }
 
     /* Course card image overlay */
     .course-img-overlay {
-      background: linear-gradient(0deg, rgba(17,17,17,0.95) 0%, rgba(17,17,17,0.4) 60%, rgba(17,17,17,0.1) 100%);
+      background: linear-gradient(0deg, rgba(17, 17, 17, 0.95) 0%, rgba(17, 17, 17, 0.4) 60%, rgba(17, 17, 17, 0.1) 100%);
     }
 
     /* Content card dark overlay */
     .content-overlay {
-      background: linear-gradient(0deg, rgba(17,17,17,0.9) 0%, rgba(17,17,17,0.5) 100%);
+      background: linear-gradient(0deg, rgba(17, 17, 17, 0.9) 0%, rgba(17, 17, 17, 0.5) 100%);
     }
 
     /* Consultoria background */
     .consultoria-bg {
-      background: linear-gradient(135deg, rgba(17,17,17,0.92) 0%, rgba(30,25,10,0.88) 100%),
+      background: linear-gradient(135deg, rgba(17, 17, 17, 0.92) 0%, rgba(30, 25, 10, 0.88) 100%),
         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23111" width="100" height="100"/></svg>');
       background-size: cover;
     }
@@ -158,6 +325,7 @@
     .gold-border-animated {
       position: relative;
     }
+
     .gold-border-animated::before {
       content: '';
       position: absolute;
@@ -171,7 +339,10 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
-    .gold-border-animated:hover::before { opacity: 1; }
+
+    .gold-border-animated:hover::before {
+      opacity: 1;
+    }
 
     /* Mobile menu */
     #mobile-menu {
@@ -180,38 +351,76 @@
 
     /* Pulse dot */
     @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.5); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.5);
+      }
     }
+
     .pulse-dot {
       animation: pulseDot 2s ease-in-out infinite;
     }
 
     /* Fade in up */
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     .animate-fade-in-up {
       animation: fadeInUp 0.8s ease forwards;
     }
-    .delay-100 { animation-delay: 0.1s; }
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-300 { animation-delay: 0.3s; }
-    .delay-400 { animation-delay: 0.4s; }
-    .delay-500 { animation-delay: 0.5s; }
+
+    .delay-100 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-200 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-300 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-400 {
+      animation-delay: 0.4s;
+    }
+
+    .delay-500 {
+      animation-delay: 0.5s;
+    }
 
     /* Tool card icon */
     .tool-icon {
-      width: 56px; height: 56px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: rgba(242, 169, 0, 0.12);
       border: 1px solid rgba(242, 169, 0, 0.3);
     }
 
     /* Smooth scroll */
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     /* CPF badge */
     .cpf-badge {
@@ -221,53 +430,107 @@
 
     /* Carousel dots */
     .carousel-dot {
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: #555;
       transition: all 0.3s;
       cursor: pointer;
     }
+
     .carousel-dot.active {
       background: #F2A900;
       width: 24px;
       border-radius: 4px;
     }
+
+    /* =============================================
+       GLASSMORPHISM — Método section cards
+    ============================================= */
+    #metodo .card-hover {
+      background: rgba(10, 10, 10, 0.45) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(242, 169, 0, 0.12) !important;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #metodo .card-hover:hover {
+      background: rgba(15, 12, 5, 0.55) !important;
+      border-color: rgba(242, 169, 0, 0.28) !important;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 0 24px rgba(242, 169, 0, 0.06) !important;
+    }
+
+    /* Divider inside glass card adapts */
+    #metodo .card-hover [style*="border-top:1px solid rgba(255,255,255,0.06)"] {
+      border-top-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Section text brightness bump so it reads well on glass */
+    #metodo p[style*="color:#6b7080"],
+    #metodo p[style*="color:#7a7f8e"] {
+      color: #8a8f9e !important;
+    }
   </style>
 </head>
+
 <body class="bg-charcoal text-white antialiased overflow-x-hidden">
 
   <!-- ===== NAVIGATION ===== -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-    <nav class="bg-charcoal/98 backdrop-blur-md border-b border-white/10" style="background: rgba(10,10,10,0.97);">
+  <header id="navbar" style="
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    background: rgba(0,0,0,0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  ">
+    <nav style="border-bottom: 1px solid rgba(255,255,255,0);">
       <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        <div class="flex items-center justify-between h-20">
+        <div class="flex items-center justify-between"
+          style="min-height:88px; transition: min-height 0.4s cubic-bezier(0.4,0,0.2,1);" id="nav-bar-inner">
 
           <!-- Logo -->
           <a href="#" class="flex-shrink-0 flex items-center gap-3">
-            <img src="logo.jpeg" alt="Business Brasil Logo" class="h-12 w-auto" />
+            <img src="logo.jpeg" alt="Business Brasil Logo" id="nav-logo"
+              style="height:72px; width:auto; transition: height 0.4s cubic-bezier(0.4,0,0.2,1);" />
           </a>
 
           <!-- Desktop Nav Links -->
           <div class="hidden lg:flex items-center gap-8">
-            <a href="#metodo" class="nav-link text-xs font-semibold tracking-widest2 text-gray-300 uppercase">O Método</a>
-            <a href="#conteudo" class="nav-link text-xs font-semibold tracking-widest2 text-gray-300 uppercase">Conteúdo Premium</a>
-            <a href="#consultoria" class="nav-link text-xs font-semibold tracking-widest2 text-gray-300 uppercase">A Consultoria</a>
-            <a href="#cursos" class="nav-link text-xs font-semibold tracking-widest2 text-gray-300 uppercase">Cursos Restritos</a>
-            <a href="#blog" class="nav-link text-xs font-semibold tracking-widest2 text-gray-300 uppercase">Blog</a>
+            <a href="#metodo" class="nav-link"
+              style="font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.75); text-decoration:none; transition:color 0.3s;">O
+              Método</a>
+            <a href="#conteudo" class="nav-link"
+              style="font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.75); text-decoration:none; transition:color 0.3s;">Conteúdo
+              Premium</a>
+            <a href="#consultoria" class="nav-link"
+              style="font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.75); text-decoration:none; transition:color 0.3s;">A
+              Consultoria</a>
+            <a href="#cursos" class="nav-link"
+              style="font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.75); text-decoration:none; transition:color 0.3s;">Cursos
+              Restritos</a>
+            <a href="#blog" class="nav-link"
+              style="font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.75); text-decoration:none; transition:color 0.3s;">Blog</a>
           </div>
 
           <!-- CTA Button -->
           <div class="hidden lg:flex items-center">
-            <a href="#area-aluno" id="nav-cta" class="btn-gold px-6 py-3 text-xs font-bold tracking-widest2 uppercase rounded-sm">
+            <a href="#area-aluno" id="nav-cta"
+              class="btn-gold px-6 py-3 text-xs font-bold tracking-widest2 uppercase rounded-sm">
               Área do Aluno
             </a>
           </div>
 
           <!-- Mobile Menu Button -->
-          <button id="mobile-menu-btn" class="lg:hidden text-gray-300 hover:text-gold transition-colors p-2" aria-label="Menu">
+          <button id="mobile-menu-btn" class="lg:hidden text-gray-300 hover:text-gold transition-colors p-2"
+            aria-label="Menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-              <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+              <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -276,12 +539,23 @@
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10">
         <div class="px-6 py-4 flex flex-col gap-4">
-          <a href="#metodo" class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">O Método</a>
-          <a href="#conteudo" class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">Conteúdo Premium</a>
-          <a href="#consultoria" class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">A Consultoria</a>
-          <a href="#cursos" class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">Cursos Restritos</a>
-          <a href="#blog" class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">Blog</a>
-          <a href="#area-aluno" class="btn-gold w-full text-center px-6 py-3 text-xs font-bold tracking-widest2 uppercase rounded-sm mt-2">Área do Aluno</a>
+          <a href="#metodo"
+            class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">O
+            Método</a>
+          <a href="#conteudo"
+            class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">Conteúdo
+            Premium</a>
+          <a href="#consultoria"
+            class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">A
+            Consultoria</a>
+          <a href="#cursos"
+            class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">Cursos
+            Restritos</a>
+          <a href="#blog"
+            class="text-xs font-semibold tracking-widest2 text-gray-300 uppercase hover:text-gold transition-colors">Blog</a>
+          <a href="#area-aluno"
+            class="btn-gold w-full text-center px-6 py-3 text-xs font-bold tracking-widest2 uppercase rounded-sm mt-2">Área
+            do Aluno</a>
         </div>
       </div>
     </nav>
@@ -298,29 +572,35 @@
     <!-- Hero Content -->
     <div class="relative z-20 max-w-5xl mx-auto px-8 text-center py-32 lg:py-40">
       <!-- Badge -->
-      <div class="inline-flex items-center gap-2 bg-white/5 border border-gold/30 rounded-full px-4 py-2 mb-8 animate-fade-in-up opacity-0">
+      <div
+        class="inline-flex items-center gap-2 bg-white/5 border border-gold/30 rounded-full px-4 py-2 mb-8 animate-fade-in-up opacity-0">
         <span class="pulse-dot w-2 h-2 rounded-full bg-gold inline-block"></span>
-        <span class="text-xs font-medium tracking-widest2 text-gold uppercase">Plataforma Restrita — Acesso por Convite</span>
+        <span class="text-xs font-medium tracking-widest2 text-gold uppercase">Plataforma Restrita — Acesso por
+          Convite</span>
       </div>
 
       <!-- Headline -->
-      <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black uppercase leading-tight tracking-tight text-white mb-6 animate-fade-in-up opacity-0 delay-100">
+      <h1
+        class="text-4xl sm:text-5xl lg:text-7xl font-black uppercase leading-tight tracking-tight text-white mb-6 animate-fade-in-up opacity-0 delay-100">
         Conhecimento Sem<br />
         Aplicação É Apenas<br />
         <span class="text-gold-gradient">Entretenimento.</span>
       </h1>
 
       <!-- Sub-headline -->
-      <p class="text-base sm:text-lg text-gray-200 max-w-2xl mx-auto mb-10 font-light leading-relaxed animate-fade-in-up opacity-0 delay-200">
+      <p
+        class="text-base sm:text-lg text-gray-200 max-w-2xl mx-auto mb-10 font-light leading-relaxed animate-fade-in-up opacity-0 delay-200">
         Uma plataforma nichada e restrita para empresários que buscam clareza,
         decisões aceleradas e crescimento operacional sustentável.
       </p>
 
       <!-- CTA Button -->
       <div class="flex flex-col items-center gap-3 animate-fade-in-up opacity-0 delay-300">
-        <a href="#acesso" id="hero-cta" class="btn-gold px-10 py-4 text-sm font-bold tracking-widest2 uppercase rounded-sm inline-flex items-center gap-3">
+        <a href="#acesso" id="hero-cta"
+          class="btn-gold px-10 py-4 text-sm font-bold tracking-widest2 uppercase rounded-sm inline-flex items-center gap-3">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
           Solicitar Acesso Restrito
         </a>
@@ -335,492 +615,736 @@
     </div>
   </section>
 
-  <!-- ===== MÉTODO SECTION ===== -->
-  <section id="metodo" class="py-28 lg:py-36" style="background: #eeede9;">
-    <div class="max-w-7xl mx-auto px-8 lg:px-16">
 
-      <!-- Section Header -->
-      <div class="mb-14 reveal">
-        <p class="text-xs font-bold tracking-widest2 uppercase mb-3" style="color:#b88a00;">Nossa Abordagem</p>
-        <div class="flex items-end justify-between flex-wrap gap-4">
-          <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight" style="color:#0d0d0d;">O Método</h2>
+  <!-- ======================================================
+       MÉTODO SECTION
+  ====================================================== -->
+  <section id="metodo" style="
+    padding: 100px 0;
+    position: relative;
+    background-image: url('img/bg_conect.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  ">
+    <!-- Dark overlay so the circuit doesn't overpower -->
+    <div id="metodo-overlay"
+      style="position:absolute; inset:0; background:rgba(0,0,0,0.58); pointer-events:none; z-index:0; transition:background 0.1s;">
+    </div>
+    <div style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:1;">
+
+      <!-- Section Label -->
+      <div class="reveal" style="text-align:center; margin-bottom:56px;">
+        <span
+          style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; margin-bottom:16px;">Nossa
+          Abordagem</span>
+        <h2
+          style="font-size:42px; font-weight:800; color:#ffffff; letter-spacing:-0.02em; line-height:1.15; margin:0 0 16px 0; text-transform:uppercase;">
+          O Método</h2>
+        <div
+          style="width:48px; height:3px; background:linear-gradient(90deg,#F2A900,#FFD166); border-radius:2px; margin:0 auto 20px; box-shadow:0 0 10px rgba(242,169,0,0.5);">
         </div>
-        <div class="gold-divider mt-4"></div>
-        <p class="mt-5 max-w-2xl text-sm leading-relaxed font-light" style="color:#444444;">
-          Construído a partir de experiências reais em gestão, liderança, turnaround, cultura empresarial,
-          posicionamento e crescimento sustentável.
+        <p style="font-size:15px; color:#7a7f8e; line-height:1.7; max-width:560px; margin:0 auto; font-weight:400;">
+          Construído a partir de experiências reais em gestão, liderança, turnaround e crescimento sustentável.
         </p>
       </div>
 
-      <!-- Method Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+      <!-- 3 Cards -->
+      <div class="reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:60px;">
 
         <!-- Card 1 -->
-        <div class="card-hover bg-white border border-gray-100 rounded-sm p-8 shadow-sm gold-border-animated">
-          <div class="flex items-start gap-4 mb-5">
-            <div class="flex-shrink-0 tool-icon" style="background: rgba(242,169,0,0.08); border-color: rgba(242,169,0,0.2);">
-              <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-black text-sm uppercase tracking-wide" style="color:#0d0d0d;">Foco na Prática:</h3>
-              <p class="text-sm font-light mt-1 leading-relaxed" style="color:#444444;">
-                Frameworks e módulos desenvolvidos para gerar clareza e acelerar decisões no dia a dia da gestão.
-              </p>
-            </div>
+        <div class="card-hover"
+          style="background:rgba(10,10,10,0.45); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(242,169,0,0.12); border-radius:8px; padding:36px 32px;">
+          <div class="icon-box"
+            style="width:52px; height:52px; background:rgba(242,169,0,0.1); border:1px solid rgba(242,169,0,0.25); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+            <svg width="24" height="24" fill="none" stroke="#F2A900" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
           </div>
-          <div class="border-t border-gray-100 pt-4">
-            <span class="text-xs font-bold tracking-wide uppercase" style="color:#b88a00;">→ Aplicação Imediata</span>
+          <h3
+            style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 12px 0;">
+            Foco na Prática</h3>
+          <p style="font-size:14px; color:#6b7080; line-height:1.7; margin:0 0 20px 0;">Frameworks e módulos
+            desenvolvidos para gerar clareza e acelerar decisões no dia a dia da gestão.</p>
+          <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
+            <span
+              style="font-size:11px; font-weight:700; color:#F2A900; letter-spacing:0.15em; text-transform:uppercase;">→
+              Aplicação Imediata</span>
           </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="card-hover bg-white border border-gray-100 rounded-sm p-8 shadow-sm gold-border-animated">
-          <div class="flex items-start gap-4 mb-5">
-            <div class="flex-shrink-0 tool-icon" style="background: rgba(242,169,0,0.08); border-color: rgba(242,169,0,0.2);">
-              <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-black text-sm uppercase tracking-wide" style="color:#0d0d0d;">Resultados Reais:</h3>
-              <p class="text-sm font-light mt-1 leading-relaxed" style="color:#444444;">
-                Turnaround, cultura, posicionamento e crescimento. Cada conteúdo foi testado em empresas reais.
-              </p>
-            </div>
+        <div class="card-hover"
+          style="background:rgba(10,10,10,0.45); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(242,169,0,0.12); border-radius:8px; padding:36px 32px;">
+          <div class="icon-box"
+            style="width:52px; height:52px; background:rgba(242,169,0,0.1); border:1px solid rgba(242,169,0,0.25); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+            <svg width="24" height="24" fill="none" stroke="#F2A900" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
           </div>
-          <div class="border-t border-gray-100 pt-4">
-            <span class="text-xs font-bold tracking-wide uppercase" style="color:#b88a00;">→ Resultados Mensuráveis</span>
+          <h3
+            style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 12px 0;">
+            Resultados Reais</h3>
+          <p style="font-size:14px; color:#6b7080; line-height:1.7; margin:0 0 20px 0;">Turnaround, cultura,
+            posicionamento e crescimento. Cada conteúdo foi testado em empresas reais.</p>
+          <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
+            <span
+              style="font-size:11px; font-weight:700; color:#F2A900; letter-spacing:0.15em; text-transform:uppercase;">→
+              Resultados Mensuráveis</span>
           </div>
         </div>
 
         <!-- Card 3 -->
-        <div class="card-hover bg-white border border-gray-100 rounded-sm p-8 shadow-sm gold-border-animated">
-          <div class="flex items-start gap-4 mb-5">
-            <div class="flex-shrink-0 tool-icon" style="background: rgba(242,169,0,0.08); border-color: rgba(242,169,0,0.2);">
-              <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-black text-sm uppercase tracking-wide" style="color:#0d0d0d;">Pensar Como Dono:</h3>
-              <p class="text-sm font-light mt-1 leading-relaxed" style="color:#444444;">
-                Liderar com estratégia, construir equipes fortes e aumentar produtividade com mentalidade de dono.
-              </p>
-            </div>
+        <div class="card-hover"
+          style="background:rgba(10,10,10,0.45); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(242,169,0,0.12); border-radius:8px; padding:36px 32px;">
+          <div class="icon-box"
+            style="width:52px; height:52px; background:rgba(242,169,0,0.1); border:1px solid rgba(242,169,0,0.25); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+            <svg width="24" height="24" fill="none" stroke="#F2A900" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
           </div>
-          <div class="border-t border-gray-100 pt-4">
-            <span class="text-xs font-bold tracking-wide uppercase" style="color:#b88a00;">→ Liderança Estratégica</span>
+          <h3
+            style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 12px 0;">
+            Pensar Como Dono</h3>
+          <p style="font-size:14px; color:#6b7080; line-height:1.7; margin:0 0 20px 0;">Liderar com estratégia,
+            construir equipes fortes e aumentar produtividade com mentalidade de dono.</p>
+          <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
+            <span
+              style="font-size:11px; font-weight:700; color:#F2A900; letter-spacing:0.15em; text-transform:uppercase;">→
+              Liderança Estratégica</span>
           </div>
         </div>
       </div>
 
-      <!-- Method description full text -->
-      <div class="mt-12 reveal">
-        <div class="bg-charcoal rounded-sm p-8 lg:p-12 relative overflow-hidden">
-          <!-- Decorative element -->
-          <div class="absolute top-0 right-0 w-64 h-64 opacity-5">
-            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="100" cy="100" r="90" stroke="#F2A900" stroke-width="1"/>
-              <circle cx="100" cy="100" r="70" stroke="#F2A900" stroke-width="1"/>
-              <circle cx="100" cy="100" r="50" stroke="#F2A900" stroke-width="1"/>
-              <line x1="10" y1="100" x2="190" y2="100" stroke="#F2A900" stroke-width="1"/>
-              <line x1="100" y1="10" x2="100" y2="190" stroke="#F2A900" stroke-width="1"/>
-            </svg>
-          </div>
-          <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <p class="text-xs font-bold tracking-widest2 text-gold uppercase mb-4">A Filosofia</p>
-              <blockquote class="text-2xl font-black text-white leading-tight uppercase">
-                "Conhecimento sem aplicação prática é apenas entretenimento."
-              </blockquote>
-            </div>
-            <div>
-              <p class="text-gray-300 text-sm leading-relaxed font-light">
-                Aqui, você aprende a pensar como dono, liderar com estratégia, construir equipes fortes,
-                aumentar produtividade, elevar a percepção de valor da sua marca e criar uma operação
-                mais eficiente, organizada e lucrativa.
-              </p>
-              <a href="#acesso" class="btn-gold inline-flex items-center gap-2 mt-6 px-6 py-3 text-xs font-bold tracking-widest2 uppercase rounded-sm">
-                Solicitar Acesso
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
-              </a>
-            </div>
-          </div>
+      <!-- Philosophy Banner -->
+      <div class="reveal"
+        style="background:rgba(10,10,10,0.4); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(242,169,0,0.18); border-radius:8px; padding:48px 56px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+        <div>
+          <span
+            style="font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; display:block; margin-bottom:16px;">A
+            Filosofia</span>
+          <blockquote
+            style="font-size:28px; font-weight:800; color:#ffffff; line-height:1.2; letter-spacing:-0.02em; text-transform:uppercase; margin:0;">
+            "Conhecimento sem aplicação prática é apenas entretenimento."</blockquote>
         </div>
+        <div>
+          <p style="font-size:15px; color:#7a7f8e; line-height:1.75; margin:0 0 28px 0;">Aqui, você aprende a pensar
+            como dono, liderar com estratégia, construir equipes fortes, aumentar produtividade e criar uma operação
+            mais eficiente, organizada e lucrativa.</p>
+          <a href="#acesso" class="btn-gold"
+            style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; border-radius:4px; text-decoration:none;">
+            Solicitar Acesso
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================
+       STATS STRIP
+  ====================================================== -->
+  <section
+    style="background:#070707; border-top:1px solid rgba(242,169,0,0.12); border-bottom:1px solid rgba(242,169,0,0.12); padding:56px 0;">
+    <div style="max-width:1200px; margin:0 auto; padding:0 40px;">
+      <div class="reveal" style="display:grid; grid-template-columns:repeat(4,1fr); gap:0;">
+
+        <div style="text-align:center; padding:0 32px; border-right:1px solid rgba(255,255,255,0.07);">
+          <div
+            style="font-size:48px; font-weight:800; color:#F2A900; letter-spacing:-0.03em; line-height:1; margin-bottom:8px;">
+            +100</div>
+          <div style="font-size:11px; font-weight:600; color:#4a5060; letter-spacing:0.2em; text-transform:uppercase;">
+            Empresas Impactadas</div>
+        </div>
+
+        <div style="text-align:center; padding:0 32px; border-right:1px solid rgba(255,255,255,0.07);">
+          <div
+            style="font-size:48px; font-weight:800; color:#F2A900; letter-spacing:-0.03em; line-height:1; margin-bottom:8px;">
+            3</div>
+          <div style="font-size:11px; font-weight:600; color:#4a5060; letter-spacing:0.2em; text-transform:uppercase;">
+            Módulos por Curso</div>
+        </div>
+
+        <div style="text-align:center; padding:0 32px; border-right:1px solid rgba(255,255,255,0.07);">
+          <div
+            style="font-size:48px; font-weight:800; color:#F2A900; letter-spacing:-0.03em; line-height:1; margin-bottom:8px;">
+            30<span style="font-size:28px;">min</span></div>
+          <div style="font-size:11px; font-weight:600; color:#4a5060; letter-spacing:0.2em; text-transform:uppercase;">
+            Por Aula Objetiva</div>
+        </div>
+
+        <div style="text-align:center; padding:0 32px;">
+          <div
+            style="font-size:48px; font-weight:800; color:#F2A900; letter-spacing:-0.03em; line-height:1; margin-bottom:8px;">
+            100%</div>
+          <div style="font-size:11px; font-weight:600; color:#4a5060; letter-spacing:0.2em; text-transform:uppercase;">
+            Aplicação Prática</div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== CURSOS + FERRAMENTAS SECTION ===== -->
-  <section id="cursos" class="py-28 lg:py-36 border-t" style="background: #eeede9; border-color: #d4d0c8;">
-    <div class="max-w-7xl mx-auto px-8 lg:px-16">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+  <!-- ======================================================
+       CURSOS RESTRITOS + FERRAMENTAS
+  ====================================================== -->
+  <section id="cursos" style="background:#000000; padding:100px 0; position:relative; overflow:hidden;">
+
+    <!-- Circuito animado decorativo — esquerda, colado na borda, tint dourado 20% opacity -->
+    <div style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 380px;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    ">
+      <!-- Máscara: desvanesce para a direita, mantém colado na borda esquerda -->
+      <div style="
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%);
+        z-index: 2;
+      "></div>
+      <img src="img/circuito-animado.gif" alt="" style="
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: left center;
+          opacity: 0.2;
+          filter: sepia(1) saturate(6) hue-rotate(5deg) brightness(1.1);
+          mix-blend-mode: screen;
+        " />
+    </div>
+
+    <div style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:1;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
 
         <!-- LEFT: Cursos Restritos -->
-        <div class="reveal">
-          <div class="flex items-center justify-between mb-8">
-            <div>
-              <p class="text-xs font-bold tracking-widest2 uppercase mb-2" style="color:#b88a00;">Acesso Exclusivo</p>
-              <h2 class="text-2xl font-black uppercase tracking-tight" style="color:#0d0d0d;">Cursos Restritos</h2>
-              <div class="gold-divider mt-3"></div>
-            </div>
-            <a href="#" class="text-xs font-semibold text-gray-400 hover:text-gold transition-colors tracking-wide uppercase underline underline-offset-4">Ver Todos</a>
+        <div class="reveal-left">
+          <span
+            style="display:block; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; margin-bottom:12px;">Acesso
+            Exclusivo</span>
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:8px;">
+            <h2
+              style="font-size:32px; font-weight:800; color:#ffffff; letter-spacing:-0.02em; text-transform:uppercase; margin:0;">
+              Cursos Restritos</h2>
+            <a href="#"
+              style="font-size:11px; font-weight:600; color:#4a5060; letter-spacing:0.15em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px;">Ver
+              Todos</a>
+          </div>
+          <div
+            style="width:48px; height:3px; background:linear-gradient(90deg,#F2A900,#FFD166); border-radius:2px; margin-bottom:36px; box-shadow:0 0 10px rgba(242,169,0,0.4);">
           </div>
 
-          <!-- Course Cards Carousel -->
-          <div class="relative">
-            <div id="courses-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Course Cards -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
 
-              <!-- Course Card 1 -->
-              <div class="card-hover rounded-sm overflow-hidden bg-charcoal">
-                <div class="relative h-44 overflow-hidden">
-                  <div class="absolute inset-0 bg-gradient-to-br from-charcoal-soft via-charcoal-medium to-charcoal flex items-center justify-center">
-                    <!-- Placeholder visual -->
-                    <div class="text-center p-4">
-                      <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="course-img-overlay absolute inset-0"></div>
-                  <div class="absolute inset-0 flex items-end p-4">
-                    <h3 class="text-white font-black text-sm uppercase tracking-wide leading-tight">Turnaround<br/>Empresarial</h3>
-                  </div>
+            <!-- Course 1 -->
+            <div class="card-hover"
+              style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; overflow:hidden;">
+              <div style="position:relative; height:160px; overflow:hidden;">
+                <img src="img/curso_turnaround.png" alt="Turnaround Empresarial"
+                  style="width:100%; height:100%; object-fit:cover; opacity:0.75;" />
+                <div
+                  style="position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.3) 100%);">
                 </div>
-                <div class="p-4">
-                  <p class="text-gray-500 text-xs font-light mb-3">3 Módulos · 30min/aula</p>
-                  <div class="flex items-center justify-between">
-                    <span class="text-white font-black text-lg">R$ 100</span>
-                    <a href="#" class="btn-gold px-3 py-1.5 text-xs font-bold tracking-wide uppercase rounded-sm">Ver Detalhes</a>
-                  </div>
+                <div style="position:absolute; bottom:12px; left:14px;">
+                  <h3
+                    style="font-size:13px; font-weight:800; color:#fff; text-transform:uppercase; letter-spacing:0.05em; line-height:1.2; margin:0;">
+                    Turnaround<br>Empresarial</h3>
                 </div>
               </div>
-
-              <!-- Course Card 2 -->
-              <div class="card-hover rounded-sm overflow-hidden bg-charcoal">
-                <div class="relative h-44 overflow-hidden">
-                  <div class="absolute inset-0 bg-gradient-to-br from-charcoal-soft via-charcoal-medium to-charcoal flex items-center justify-center">
-                    <div class="text-center p-4">
-                      <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto mb-3">
-                        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="course-img-overlay absolute inset-0"></div>
-                  <!-- CPF Badge -->
-                  <div class="absolute top-3 right-3">
-                    <span class="cpf-badge text-charcoal text-xs font-black px-2 py-1 rounded-full tracking-wide uppercase">CPF Flutuante Ativo</span>
-                  </div>
-                  <div class="absolute inset-0 flex items-end p-4">
-                    <h3 class="text-white font-black text-sm uppercase tracking-wide leading-tight">Cultura<br/>de Elite</h3>
-                  </div>
-                </div>
-                <div class="p-4">
-                  <p class="text-gray-500 text-xs font-light mb-3">3 Módulos · 30min/aula</p>
-                  <div class="flex items-center justify-between">
-                    <span class="text-white font-black text-lg">R$ 100</span>
-                    <a href="#" class="btn-gold px-3 py-1.5 text-xs font-bold tracking-wide uppercase rounded-sm">Ver Detalhes</a>
-                  </div>
+              <div style="padding:16px;">
+                <p style="font-size:12px; color:#4a5060; font-weight:500; margin:0 0 12px 0;">3 Módulos · 30min/aula</p>
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <span style="font-size:22px; font-weight:800; color:#fff; letter-spacing:-0.02em;">R$ 100</span>
+                  <a href="#" class="btn-gold"
+                    style="padding:8px 14px; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; border-radius:3px; text-decoration:none;">Ver
+                    Detalhes</a>
                 </div>
               </div>
-
             </div>
 
-            <!-- Carousel dots -->
-            <div class="flex items-center justify-center gap-2 mt-6">
-              <div class="carousel-dot active"></div>
-              <div class="carousel-dot"></div>
-              <div class="carousel-dot"></div>
+            <!-- Course 2 -->
+            <div class="card-hover"
+              style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; overflow:hidden; position:relative;">
+              <div style="position:relative; height:160px; overflow:hidden;">
+                <img src="img/curso_cultura.png" alt="Cultura de Elite"
+                  style="width:100%; height:100%; object-fit:cover; opacity:0.75;" />
+                <!-- CPF Badge -->
+                <div
+                  style="position:absolute; top:10px; right:10px; background:rgba(242,169,0,0.9); padding:3px 8px; border-radius:20px;">
+                  <span
+                    style="font-size:9px; font-weight:800; color:#000; text-transform:uppercase; letter-spacing:0.05em;">CPF
+                    Flutuante</span>
+                </div>
+                <div
+                  style="position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.3) 100%);">
+                </div>
+                <div style="position:absolute; bottom:12px; left:14px;">
+                  <h3
+                    style="font-size:13px; font-weight:800; color:#fff; text-transform:uppercase; letter-spacing:0.05em; line-height:1.2; margin:0;">
+                    Cultura<br>de Elite</h3>
+                </div>
+              </div>
+              <div style="padding:16px;">
+                <p style="font-size:12px; color:#4a5060; font-weight:500; margin:0 0 12px 0;">3 Módulos · 30min/aula</p>
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <span style="font-size:22px; font-weight:800; color:#fff; letter-spacing:-0.02em;">R$ 100</span>
+                  <a href="#" class="btn-gold"
+                    style="padding:8px 14px; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; border-radius:3px; text-decoration:none;">Ver
+                    Detalhes</a>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- Carousel dots -->
+          <div style="display:flex; align-items:center; justify-content:center; gap:6px;">
+            <div style="width:24px; height:3px; background:#F2A900; border-radius:2px;"></div>
+            <div style="width:8px; height:3px; background:#2a2a2a; border-radius:2px;"></div>
+            <div style="width:8px; height:3px; background:#2a2a2a; border-radius:2px;"></div>
           </div>
         </div>
 
         <!-- RIGHT: Ferramentas e Segurança -->
-        <div class="reveal">
-          <div class="flex items-center justify-between mb-8">
+        <div class="reveal-right">
+          <span
+            style="display:block; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; margin-bottom:12px;">Tecnologia
+            Exclusiva</span>
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:8px;">
+            <h2
+              style="font-size:32px; font-weight:800; color:#ffffff; letter-spacing:-0.02em; text-transform:uppercase; margin:0;">
+              Ferramentas e Segurança</h2>
+            <a href="#"
+              style="font-size:11px; font-weight:600; color:#4a5060; letter-spacing:0.15em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px;">Ver
+              Todos</a>
+          </div>
+          <div
+            style="width:48px; height:3px; background:linear-gradient(90deg,#F2A900,#FFD166); border-radius:2px; margin-bottom:36px; box-shadow:0 0 10px rgba(242,169,0,0.4);">
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:16px;">
+
+            <!-- Tool 1 -->
+            <div class="card-hover"
+              style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:28px 28px; display:flex; align-items:flex-start; gap:20px;">
+              <div class="icon-box"
+                style="flex-shrink:0; width:48px; height:48px; background:rgba(242,169,0,0.1); border:1px solid rgba(242,169,0,0.25); border-radius:10px; display:flex; align-items:center; justify-content:center;">
+                <svg width="22" height="22" fill="none" stroke="#F2A900" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+              </div>
+              <div>
+                <h3
+                  style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 8px 0;">
+                  Extração de Podcast com I.A.</h3>
+                <p style="font-size:14px; color:#6b7080; line-height:1.65; margin:0;">Legendas e áudios extraídos
+                  automaticamente dos vídeos. Consuma onde e como preferir.</p>
+              </div>
+            </div>
+
+            <!-- Tool 2 -->
+            <div class="card-hover"
+              style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:28px 28px; display:flex; align-items:flex-start; gap:20px;">
+              <div class="icon-box"
+                style="flex-shrink:0; width:48px; height:48px; background:rgba(242,169,0,0.1); border:1px solid rgba(242,169,0,0.25); border-radius:10px; display:flex; align-items:center; justify-content:center;">
+                <svg width="22" height="22" fill="none" stroke="#F2A900" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div>
+                <h3
+                  style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 8px 0;">
+                  Segurança Avançada</h3>
+                <p style="font-size:14px; color:#6b7080; line-height:1.65; margin:0;">CPF flutuante do usuário
+                  sobreposto no vídeo para evitar compartilhamento não autorizado.</p>
+              </div>
+            </div>
+
+            <!-- Tool 3 -->
+            <div class="card-hover"
+              style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:28px 28px; display:flex; align-items:flex-start; gap:20px;">
+              <div class="icon-box"
+                style="flex-shrink:0; width:48px; height:48px; background:rgba(242,169,0,0.1); border:1px solid rgba(242,169,0,0.25); border-radius:10px; display:flex; align-items:center; justify-content:center;">
+                <svg width="22" height="22" fill="none" stroke="#F2A900" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3
+                  style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 8px 0;">
+                  Certificado e E-Book</h3>
+                <p style="font-size:14px; color:#6b7080; line-height:1.65; margin:0;">Certificado digital ao concluir e
+                  materiais complementares em e-book para aprofundamento.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       CONSULTORIA SECTION
+  ====================================================== -->
+  <section id="consultoria"
+    style="background:#070707; padding:100px 0; border-top:1px solid rgba(255,255,255,0.05); position:relative; overflow:hidden;">
+    <!-- Background texture -->
+    <div style="position:absolute; inset:0; z-index:0;">
+      <img src="img/bg_consultoria.png" alt="" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+    </div>
+    <div style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:1;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+
+        <!-- LEFT: Text -->
+        <div class="reveal-left">
+          <span
+            style="display:block; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; margin-bottom:16px;">Serviço
+            Premium</span>
+          <h2
+            style="font-size:42px; font-weight:800; color:#ffffff; letter-spacing:-0.02em; line-height:1.15; text-transform:uppercase; margin:0 0 20px 0;">
+            A Consultoria</h2>
+          <div
+            style="width:48px; height:3px; background:linear-gradient(90deg,#F2A900,#FFD166); border-radius:2px; margin-bottom:28px; box-shadow:0 0 10px rgba(242,169,0,0.4);">
+          </div>
+          <p style="font-size:15px; color:#6b7080; line-height:1.75; margin:0 0 16px 0;">
+            A consultoria do Business Brasil existe para empresários, gestores e empresas que desejam implementar, na
+            prática, aquilo que é apresentado nos cursos, conteúdos e frameworks.
+          </p>
+          <p style="font-size:15px; color:#6b7080; line-height:1.75; margin:0 0 16px 0;">
+            Entregamos diagnósticos empresariais, desenvolvemos estratégias personalizadas para melhorar gestão,
+            cultura, produtividade, posicionamento e performance financeira.
+          </p>
+          <p style="font-size:15px; color:#c0c5d0; line-height:1.75; margin:0 0 36px 0; font-weight:600;">
+            Os conteúdos mostram o caminho. A consultoria acelera a execução.
+          </p>
+          <a href="#acesso" class="btn-gold"
+            style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; border-radius:4px; text-decoration:none;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            Aplicar para Consultoria
+          </a>
+        </div>
+
+        <!-- RIGHT: Executive Photo + Feature list -->
+        <div class="reveal-right" style="display:flex; flex-direction:column; gap:20px;">
+          <!-- Executive Photo -->
+          <div style="border-radius:8px; overflow:hidden; margin-bottom:8px; position:relative;">
+            <img src="img/consultoria_executive.png" alt="Consultoria Executiva"
+              style="width:100%; height:260px; object-fit:cover; object-position:top; filter:brightness(0.85) contrast(1.1);" />
+            <div
+              style="position:absolute; inset:0; background:linear-gradient(0deg,rgba(7,7,7,0.8) 0%,transparent 60%);">
+            </div>
+            <div style="position:absolute; bottom:16px; left:16px;">
+              <span
+                style="font-size:11px; font-weight:700; color:#F2A900; letter-spacing:0.2em; text-transform:uppercase;">Aplicação
+                na Prática</span>
+            </div>
+          </div>
+          <div
+            style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:28px 28px; display:flex; align-items:flex-start; gap:16px;">
+            <div
+              style="flex-shrink:0; width:10px; height:10px; background:#F2A900; border-radius:50%; margin-top:5px; box-shadow:0 0 8px rgba(242,169,0,0.6);">
+            </div>
             <div>
-              <p class="text-xs font-bold tracking-widest2 uppercase mb-2" style="color:#b88a00;">Tecnologia Exclusiva</p>
-              <h2 class="text-2xl font-black uppercase tracking-tight" style="color:#0d0d0d;">Ferramentas e Segurança</h2>
-              <div class="gold-divider mt-3"></div>
-            </div>
-            <a href="#" class="text-xs font-semibold text-gray-400 hover:text-gold transition-colors tracking-wide uppercase underline underline-offset-4">Ver Todos</a>
-          </div>
-
-          <div class="flex flex-col gap-4">
-
-            <!-- Tool Card 1: Podcast -->
-            <div class="card-hover bg-charcoal rounded-sm p-6 flex items-start gap-5 group">
-              <div class="tool-icon flex-shrink-0 group-hover:bg-gold/20 transition-colors">
-                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="font-black text-sm uppercase tracking-wide mb-2" style="color:#f5f5f5;">Extração de Podcast com I.A.:</h3>
-                <p class="text-sm font-light leading-relaxed" style="color:#aaaaaa;">
-                  Legendas e áudios extraídos automaticamente dos vídeos. Consuma o conteúdo onde e como preferir.
-                </p>
-              </div>
-            </div>
-
-            <!-- Tool Card 2: Segurança -->
-            <div class="card-hover bg-charcoal rounded-sm p-6 flex items-start gap-5 group">
-              <div class="tool-icon flex-shrink-0 group-hover:bg-gold/20 transition-colors">
-                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="font-black text-sm uppercase tracking-wide mb-2" style="color:#f5f5f5;">Segurança Avançada:</h3>
-                <p class="text-sm font-light leading-relaxed" style="color:#aaaaaa;">
-                  CPF flutuante do usuário sobreposto no vídeo para evitar compartilhamento não autorizado do conteúdo.
-                </p>
-              </div>
-            </div>
-
-            <!-- Tool Card 3: Certificado -->
-            <div class="card-hover bg-charcoal rounded-sm p-6 flex items-start gap-5 group">
-              <div class="tool-icon flex-shrink-0 group-hover:bg-gold/20 transition-colors">
-                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-              </div>
-              <div>
-                <h3 class="font-black text-sm uppercase tracking-wide mb-2" style="color:#f5f5f5;">Certificado e E-Book:</h3>
-                <p class="text-sm font-light leading-relaxed" style="color:#aaaaaa;">
-                  Certificado digital ao concluir o curso e materiais complementares em e-book para estudo aprofundado.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONSULTORIA + CONTEÚDO SECTION ===== -->
-  <section id="consultoria" class="py-28 lg:py-36" style="background:#141414;">
-    <div class="max-w-7xl mx-auto px-8 lg:px-16">
-
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        <div class="lg:col-span-3 reveal">
-          <div class="consultoria-bg rounded-sm overflow-hidden relative min-h-[480px] flex flex-col justify-between p-8 lg:p-12"
-               style="background: linear-gradient(135deg, rgba(17,17,17,0.97) 0%, rgba(25,20,5,0.95) 100%), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%23111%22 width=%22400%22 height=%22300%22/><rect fill=%22%23181818%22 x=%2250%22 y=%2250%22 width=%22300%22 height=%22200%22 rx=%224%22/><line x1=%220%22 y1=%22150%22 x2=%22400%22 y2=%22150%22 stroke=%22%23222%22 stroke-width=%221%22/><line x1=%22200%22 y1=%220%22 x2=%22200%22 y2=%22300%22 stroke=%22%23222%22 stroke-width=%221%22/></svg>') center/cover;">">
-            <!-- Top decoration line -->
-            <div class="w-full h-px bg-gradient-to-r from-gold/50 via-gold/20 to-transparent mb-8"></div>
-
-            <div class="flex-1">
-              <p class="text-xs font-bold tracking-widest2 text-gold uppercase mb-4">Serviço Premium</p>
-              <h2 class="text-3xl lg:text-4xl font-black uppercase text-white tracking-tight mb-6">A Consultoria</h2>
-              <div class="gold-divider mb-6"></div>
-              <p class="text-gray-300 text-sm leading-relaxed font-light mb-4">
-                A consultoria do Business Brasil existe para empresários, gestores e empresas que desejam implementar,
-                na prática, aquilo que é apresentado nos cursos, conteúdos e frameworks.
-              </p>
-              <p class="text-gray-300 text-sm leading-relaxed font-light mb-4">
-                Entregamos diagnósticos empresariais, desenvolvemos estratégias personalizadas para melhorar gestão,
-                cultura, produtividade, posicionamento, experiência do cliente e performance financeira.
-              </p>
-              <p class="text-white text-sm leading-relaxed font-semibold">
-                Os conteúdos mostram o caminho. A consultoria acelera a execução.
-              </p>
-            </div>
-
-            <div class="mt-8">
-              <a href="#acesso" class="btn-gold inline-flex items-center gap-3 px-8 py-4 text-xs font-bold tracking-widest2 uppercase rounded-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                </svg>
-                Aplicar para Consultoria
-              </a>
+              <h4
+                style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 6px 0;">
+                Diagnóstico Empresarial</h4>
+              <p style="font-size:14px; color:#6b7080; line-height:1.6; margin:0;">Mapeamento completo dos pontos
+                críticos de gestão, cultura e operação.</p>
             </div>
           </div>
-        </div>
-
-        <!-- RIGHT: Conteúdo Premium (40%) -->
-        <div id="conteudo" class="lg:col-span-2 reveal">
-          <div class="flex items-center justify-between mb-6">
+          <div
+            style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:28px 28px; display:flex; align-items:flex-start; gap:16px;">
+            <div
+              style="flex-shrink:0; width:10px; height:10px; background:#F2A900; border-radius:50%; margin-top:5px; box-shadow:0 0 8px rgba(242,169,0,0.6);">
+            </div>
             <div>
-              <p class="text-xs font-bold tracking-widest2 text-gold uppercase mb-2">Biblioteca Exclusiva</p>
-              <h2 class="text-2xl font-black uppercase text-white tracking-tight">Conteúdo Premium</h2>
-              <div class="gold-divider mt-3"></div>
+              <h4
+                style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 6px 0;">
+                Estratégia Personalizada</h4>
+              <p style="font-size:14px; color:#6b7080; line-height:1.6; margin:0;">Plano de ação adaptado à realidade e
+                objetivos específicos da sua empresa.</p>
             </div>
-            <a href="#" class="text-xs font-semibold text-gray-500 hover:text-gold transition-colors tracking-wide uppercase underline underline-offset-4">Ver Tudo</a>
           </div>
-
-          <div class="flex flex-col gap-4">
-
-            <!-- Content Card 1: Vídeos -->
-            <div class="card-hover rounded-sm overflow-hidden relative h-36 bg-charcoal group cursor-pointer">
-              <div class="absolute inset-0 bg-gradient-to-r from-charcoal-light to-charcoal-soft flex items-center justify-center">
-                <!-- Panda Video style icon -->
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </div>
-                  <span class="text-white font-bold text-sm tracking-wide">Panda<br/>Video</span>
-                </div>
-              </div>
-              <div class="content-overlay absolute inset-0 group-hover:opacity-90 transition-opacity"></div>
-              <div class="absolute inset-0 flex items-end p-4">
-                <span class="text-white font-black text-xs uppercase tracking-widest">Vídeos Conceituais</span>
-              </div>
+          <div
+            style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:28px 28px; display:flex; align-items:flex-start; gap:16px;">
+            <div
+              style="flex-shrink:0; width:10px; height:10px; background:#F2A900; border-radius:50%; margin-top:5px; box-shadow:0 0 8px rgba(242,169,0,0.6);">
             </div>
-
-            <!-- Content Card 2: E-Books -->
-            <div class="card-hover rounded-sm overflow-hidden relative h-36 bg-charcoal group cursor-pointer">
-              <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-[#1a1a1a] to-[#222]">
-                <svg class="w-12 h-12 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                </svg>
-              </div>
-              <div class="content-overlay absolute inset-0 group-hover:opacity-90 transition-opacity"></div>
-              <div class="absolute inset-0 flex items-end p-4">
-                <span class="text-white font-black text-xs uppercase tracking-widest">E-Books</span>
-              </div>
+            <div>
+              <h4
+                style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.08em; text-transform:uppercase; margin:0 0 6px 0;">
+                Execução e Acompanhamento</h4>
+              <p style="font-size:14px; color:#6b7080; line-height:1.6; margin:0;">Implementação prática com
+                acompanhamento de resultados e ajustes contínuos.</p>
             </div>
-
-            <!-- Content Card 3: Insights -->
-            <div class="card-hover rounded-sm overflow-hidden relative h-36 bg-charcoal group cursor-pointer">
-              <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-[#1a1a1a] to-[#222]">
-                <svg class="w-12 h-12 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                </svg>
-              </div>
-              <div class="content-overlay absolute inset-0 group-hover:opacity-90 transition-opacity"></div>
-              <div class="absolute inset-0 flex items-end p-4">
-                <span class="text-white font-black text-xs uppercase tracking-widest">Insights</span>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== STATS SECTION ===== -->
-  <section class="py-20 border-y" style="background:#0d0d0d; border-color: rgba(242,169,0,0.15);">
-    <div class="max-w-7xl mx-auto px-8 lg:px-16">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 reveal">
-          <div class="text-4xl font-black text-gold mb-2">+100</div>
-          <div class="text-xs font-medium tracking-widest uppercase text-gray-500">Empresas Impactadas</div>
+  <!-- ======================================================
+       CONTEÚDO PREMIUM
+  ====================================================== -->
+  <section id="conteudo" style="background:#000000; padding:100px 0;">
+    <div style="max-width:1200px; margin:0 auto; padding:0 40px;">
+
+      <!-- Header -->
+      <div class="reveal"
+        style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:56px;">
+        <div>
+          <span
+            style="display:block; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; margin-bottom:12px;">Biblioteca
+            Exclusiva</span>
+          <h2
+            style="font-size:42px; font-weight:800; color:#ffffff; letter-spacing:-0.02em; line-height:1.15; text-transform:uppercase; margin:0 0 16px 0;">
+            Conteúdo Premium</h2>
+          <div
+            style="width:48px; height:3px; background:linear-gradient(90deg,#F2A900,#FFD166); border-radius:2px; box-shadow:0 0 10px rgba(242,169,0,0.4);">
+          </div>
         </div>
-        <div class="text-center">
-          <div class="text-4xl font-black text-gold mb-2">3</div>
-          <div class="text-xs font-medium tracking-widest uppercase text-gray-500">Módulos por Curso</div>
+        <a href="#"
+          style="font-size:11px; font-weight:700; color:#4a5060; letter-spacing:0.2em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px;">Ver
+          Todo Conteúdo</a>
+      </div>
+
+      <!-- 3 Content Cards -->
+      <div class="reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+
+        <!-- Videos -->
+        <div class="card-hover"
+          style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; overflow:hidden; cursor:pointer;">
+          <div style="position:relative; height:180px; overflow:hidden;">
+            <img src="img/conteudo_video.png" alt="Vídeos Conceituais"
+              style="width:100%; height:100%; object-fit:cover; opacity:0.8;" />
+            <div
+              style="position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.2) 70%);">
+            </div>
+            <div style="position:absolute; bottom:12px; left:16px;">
+              <span
+                style="font-size:11px; font-weight:700; color:#F2A900; letter-spacing:0.2em; text-transform:uppercase;">Panda
+                Video</span>
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <span
+              style="font-size:11px; font-weight:700; letter-spacing:0.2em; color:#F2A900; text-transform:uppercase; display:block; margin-bottom:8px;">Formato</span>
+            <h3
+              style="font-size:18px; font-weight:800; color:#ffffff; margin:0 0 8px 0; text-transform:uppercase; letter-spacing:-0.01em;">
+              Vídeos Conceituais</h3>
+            <p style="font-size:13px; color:#6b7080; line-height:1.6; margin:0;">Aulas objetivas com conteúdo direto ao
+              ponto, hospedadas com segurança no Panda Video.</p>
+          </div>
         </div>
-        <div class="text-center">
-          <div class="text-4xl font-black text-gold mb-2">30min</div>
-          <div class="text-xs font-medium tracking-widest uppercase text-gray-500">Por Aula Objetiva</div>
+
+        <!-- E-Books -->
+        <div class="card-hover"
+          style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; overflow:hidden; cursor:pointer;">
+          <div style="position:relative; height:180px; overflow:hidden;">
+            <img src="img/conteudo_ebook.png" alt="E-Books"
+              style="width:100%; height:100%; object-fit:cover; opacity:0.8;" />
+            <div
+              style="position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 70%);">
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <span
+              style="font-size:11px; font-weight:700; letter-spacing:0.2em; color:#F2A900; text-transform:uppercase; display:block; margin-bottom:8px;">Formato</span>
+            <h3
+              style="font-size:18px; font-weight:800; color:#ffffff; margin:0 0 8px 0; text-transform:uppercase; letter-spacing:-0.01em;">
+              E-Books</h3>
+            <p style="font-size:13px; color:#6b7080; line-height:1.6; margin:0;">Materiais complementares em PDF para
+              aprofundar os conceitos abordados nas aulas.</p>
+          </div>
         </div>
-        <div class="text-center">
-          <div class="text-4xl font-black text-gold mb-2">100%</div>
-          <div class="text-xs font-medium tracking-widest uppercase text-gray-500">Aplicação Prática</div>
+
+        <!-- Insights -->
+        <div class="card-hover"
+          style="background:#0d0d0d; border:1px solid rgba(255,255,255,0.07); border-radius:8px; overflow:hidden; cursor:pointer;">
+          <div style="position:relative; height:180px; overflow:hidden;">
+            <img src="img/conteudo_insights.png" alt="Insights"
+              style="width:100%; height:100%; object-fit:cover; opacity:0.8;" />
+            <div
+              style="position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 70%);">
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <span
+              style="font-size:11px; font-weight:700; letter-spacing:0.2em; color:#F2A900; text-transform:uppercase; display:block; margin-bottom:8px;">Formato</span>
+            <h3
+              style="font-size:18px; font-weight:800; color:#ffffff; margin:0 0 8px 0; text-transform:uppercase; letter-spacing:-0.01em;">
+              Insights</h3>
+            <p style="font-size:13px; color:#6b7080; line-height:1.6; margin:0;">Artigos, reflexões e frameworks sobre
+              gestão, liderança, cultura e produtividade.</p>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== CTA SECTION ===== -->
-  <section id="acesso" class="relative py-32 lg:py-44 overflow-hidden" style="background:#0a0a0a;">
-    <!-- Background network canvas for CTA -->
-    <canvas id="cta-canvas" class="absolute inset-0 w-full h-full" style="pointer-events:none; z-index:0; opacity:0.4;"></canvas>
-    <div class="absolute inset-0 z-10" style="background: radial-gradient(ellipse at center, rgba(242,169,0,0.05) 0%, rgba(17,17,17,0) 70%);"></div>
+  <!-- ======================================================
+       CTA SECTION
+  ====================================================== -->
+  <section id="acesso"
+    style="background:#070707; padding:120px 0; position:relative; overflow:hidden; border-top:1px solid rgba(255,255,255,0.05);">
+    <!-- Background image -->
+    <div style="position:absolute; inset:0; z-index:0;">
+      <img src="img/bg_cta.png" alt=""
+        style="width:100%; height:100%; object-fit:cover; opacity:0.6; mix-blend-mode:screen;" />
+    </div>
+    <canvas id="cta-canvas"
+      style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:1; opacity:0.25;"></canvas>
+    <div
+      style="position:absolute; inset:0; z-index:1; background:radial-gradient(ellipse at center, rgba(242,169,0,0.04) 0%, transparent 70%);">
+    </div>
 
-    <div class="relative z-20 max-w-3xl mx-auto px-8 text-center reveal">
-      <p class="text-xs font-bold tracking-widest2 text-gold uppercase mb-4">Próximo Passo</p>
-      <h2 class="text-3xl sm:text-5xl font-black uppercase text-white leading-tight mb-6">
-        Pronto para Transformar<br/>sua Empresa?
-      </h2>
-      <p class="text-gray-300 text-sm leading-relaxed mb-10 font-light max-w-xl mx-auto">
-        Nosso objetivo é transformar empresas em operações mais fortes, organizadas, desejadas e lucrativas.
-        Acesso restrito. Apenas para quem leva o negócio a sério.
+    <div class="reveal"
+      style="position:relative; z-index:2; max-width:680px; margin:0 auto; padding:0 40px; text-align:center;">
+      <span
+        style="display:block; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; margin-bottom:20px;">Próximo
+        Passo</span>
+      <h2
+        style="font-size:48px; font-weight:800; color:#ffffff; letter-spacing:-0.02em; line-height:1.1; text-transform:uppercase; margin:0 0 20px 0;">
+        Pronto para Transformar<br>sua Empresa?</h2>
+      <p style="font-size:15px; color:#6b7080; line-height:1.75; margin:0 0 40px 0;">
+        Nosso objetivo é transformar empresas em operações mais fortes, organizadas, desejadas e lucrativas. Acesso
+        restrito. Apenas para quem leva o negócio a sério.
       </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#" class="btn-gold px-10 py-4 text-sm font-bold tracking-widest2 uppercase rounded-sm inline-flex items-center gap-3 w-full sm:w-auto justify-center">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+      <div style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
+        <a href="#" class="btn-gold"
+          style="display:inline-flex; align-items:center; gap:10px; padding:16px 32px; font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; border-radius:4px; text-decoration:none;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
           Solicitar Acesso Restrito
         </a>
-        <a href="#consultoria" class="px-8 py-4 text-sm font-bold tracking-widest2 uppercase rounded-sm border border-white/20 text-white hover:border-gold hover:text-gold transition-all w-full sm:w-auto text-center">
+        <a href="#consultoria"
+          style="display:inline-flex; align-items:center; gap:8px; padding:16px 28px; font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; border-radius:4px; text-decoration:none; border:1px solid rgba(255,255,255,0.15); color:#c0c5d0; transition:all 0.3s;"
+          onmouseover="this.style.borderColor='#F2A900';this.style.color='#F2A900'"
+          onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#c0c5d0'">
           Conhecer a Consultoria
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer id="blog" class="border-t py-16" style="background:#060606; border-color: rgba(255,255,255,0.08);">
-    <div class="max-w-7xl mx-auto px-8 lg:px-16">
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 mb-12">
-        <div class="lg:col-span-2">
-          <img src="logo.jpeg" alt="Business Brasil" class="h-14 w-auto mb-4" />
-          <p class="text-gray-400 text-sm font-light leading-relaxed max-w-sm">
-            Uma plataforma nichada e restrita para empresários que buscam clareza,
-            decisões aceleradas e crescimento operacional sustentável.
+  <!-- ======================================================
+       FOOTER
+  ====================================================== -->
+  <footer id="blog" style="background:#000000; border-top:1px solid rgba(255,255,255,0.07); padding:72px 0 40px;">
+    <div style="max-width:1200px; margin:0 auto; padding:0 40px;">
+      <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:64px; margin-bottom:56px;">
+
+        <!-- Brand -->
+        <div>
+          <img src="logo.jpeg" alt="Business Brasil" style="height:56px; width:auto; margin-bottom:20px;" />
+          <p style="font-size:14px; color:#4a5060; line-height:1.75; max-width:320px; margin:0 0 28px 0;">
+            Uma plataforma nichada e restrita para empresários que buscam clareza, decisões aceleradas e crescimento
+            operacional sustentável.
           </p>
-          <div class="flex items-center gap-4 mt-6">
-            <a href="#" class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-gold hover:text-gold text-gray-500 transition-all" aria-label="Instagram">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <a href="#" aria-label="Instagram"
+              style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#4a5060; text-decoration:none; transition:all 0.3s;"
+              onmouseover="this.style.borderColor='#F2A900';this.style.color='#F2A900'"
+              onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#4a5060'">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
             </a>
-            <a href="#" class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-gold hover:text-gold text-gray-500 transition-all" aria-label="YouTube">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            <a href="#" aria-label="YouTube"
+              style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#4a5060; text-decoration:none; transition:all 0.3s;"
+              onmouseover="this.style.borderColor='#F2A900';this.style.color='#F2A900'"
+              onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#4a5060'">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z" />
+              </svg>
             </a>
-            <a href="#" class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-gold hover:text-gold text-gray-500 transition-all" aria-label="LinkedIn">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <a href="#" aria-label="LinkedIn"
+              style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#4a5060; text-decoration:none; transition:all 0.3s;"
+              onmouseover="this.style.borderColor='#F2A900';this.style.color='#F2A900'"
+              onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#4a5060'">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
             </a>
           </div>
         </div>
 
-        <!-- Links -->
+        <!-- Links Plataforma -->
         <div>
-          <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-5">Plataforma</h4>
-          <ul class="flex flex-col gap-3">
-            <li><a href="#metodo" class="text-gray-500 text-sm hover:text-gold transition-colors font-light">O Método</a></li>
-            <li><a href="#cursos" class="text-gray-500 text-sm hover:text-gold transition-colors font-light">Cursos Restritos</a></li>
-            <li><a href="#consultoria" class="text-gray-500 text-sm hover:text-gold transition-colors font-light">A Consultoria</a></li>
-            <li><a href="#conteudo" class="text-gray-500 text-sm hover:text-gold transition-colors font-light">Conteúdo Premium</a></li>
-            <li><a href="#" class="text-gray-500 text-sm hover:text-gold transition-colors font-light">Blog</a></li>
+          <h4
+            style="font-size:11px; font-weight:700; letter-spacing:0.25em; color:#ffffff; text-transform:uppercase; margin:0 0 24px 0;">
+            Plataforma</h4>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px;">
+            <li><a href="#metodo" style="font-size:14px; color:#4a5060; text-decoration:none; transition:color 0.2s;"
+                onmouseover="this.style.color='#F2A900'" onmouseout="this.style.color='#4a5060'">O Método</a></li>
+            <li><a href="#cursos" style="font-size:14px; color:#4a5060; text-decoration:none; transition:color 0.2s;"
+                onmouseover="this.style.color='#F2A900'" onmouseout="this.style.color='#4a5060'">Cursos Restritos</a>
+            </li>
+            <li><a href="#consultoria"
+                style="font-size:14px; color:#4a5060; text-decoration:none; transition:color 0.2s;"
+                onmouseover="this.style.color='#F2A900'" onmouseout="this.style.color='#4a5060'">A Consultoria</a></li>
+            <li><a href="#conteudo" style="font-size:14px; color:#4a5060; text-decoration:none; transition:color 0.2s;"
+                onmouseover="this.style.color='#F2A900'" onmouseout="this.style.color='#4a5060'">Conteúdo Premium</a>
+            </li>
+            <li><a href="#" style="font-size:14px; color:#4a5060; text-decoration:none; transition:color 0.2s;"
+                onmouseover="this.style.color='#F2A900'" onmouseout="this.style.color='#4a5060'">Blog</a></li>
           </ul>
         </div>
 
-        <!-- Contact -->
+        <!-- Contato -->
         <div>
-          <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-5">Contato</h4>
-          <ul class="flex flex-col gap-3">
-            <li class="text-gray-500 text-sm font-light">hbbox.com.br</li>
-            <li><a href="mailto:contato@businessbrasil.com.br" class="text-gray-500 text-sm hover:text-gold transition-colors font-light">contato@businessbrasil.com.br</a></li>
-            <li class="mt-4">
-              <a href="#acesso" class="btn-gold px-5 py-2.5 text-xs font-bold tracking-widest2 uppercase rounded-sm inline-block">
-                Área do Aluno
-              </a>
-            </li>
+          <h4
+            style="font-size:11px; font-weight:700; letter-spacing:0.25em; color:#ffffff; text-transform:uppercase; margin:0 0 24px 0;">
+            Contato</h4>
+          <ul style="list-style:none; padding:0; margin:0 0 24px 0; display:flex; flex-direction:column; gap:14px;">
+            <li style="font-size:14px; color:#4a5060;">hbbox.com.br</li>
+            <li><a href="mailto:contato@businessbrasil.com.br"
+                style="font-size:14px; color:#4a5060; text-decoration:none; transition:color 0.2s;"
+                onmouseover="this.style.color='#F2A900'"
+                onmouseout="this.style.color='#4a5060'">contato@businessbrasil.com.br</a></li>
           </ul>
+          <a href="#acesso" class="btn-gold"
+            style="display:inline-block; padding:12px 20px; font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; border-radius:4px; text-decoration:none;">Área
+            do Aluno</a>
         </div>
+
       </div>
 
       <!-- Bottom bar -->
-      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-gray-600 text-xs font-light">
-          © 2026 Business Brasil. Todos os direitos reservados.
-        </p>
-        <div class="flex items-center gap-6">
-          <a href="#" class="text-gray-600 text-xs hover:text-gray-400 transition-colors font-light">Privacidade</a>
-          <a href="#" class="text-gray-600 text-xs hover:text-gray-400 transition-colors font-light">Termos de Uso</a>
+      <div
+        style="border-top:1px solid rgba(255,255,255,0.06); padding-top:28px; display:flex; align-items:center; justify-content:space-between;">
+        <p style="font-size:13px; color:#2a2f3d; margin:0;">© 2026 Business Brasil. Todos os direitos reservados.</p>
+        <div style="display:flex; align-items:center; gap:24px;">
+          <a href="#" style="font-size:13px; color:#2a2f3d; text-decoration:none; transition:color 0.2s;"
+            onmouseover="this.style.color='#4a5060'" onmouseout="this.style.color='#2a2f3d'">Privacidade</a>
+          <a href="#" style="font-size:13px; color:#2a2f3d; text-decoration:none; transition:color 0.2s;"
+            onmouseover="this.style.color='#4a5060'" onmouseout="this.style.color='#2a2f3d'">Termos de Uso</a>
         </div>
       </div>
     </div>
@@ -828,30 +1352,17 @@
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // ============================================================
-    // VANTA.NET — HERO BACKGROUND
-    // ============================================================
+    // VANTA.NET
     window.addEventListener('load', function () {
       if (typeof VANTA !== 'undefined' && VANTA.NET) {
         VANTA.NET({
           el: '#vanta-hero',
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          scale: 1.00,
-          scaleMobile: 1.00,
-          color: 0xF2A900,          // dourado Business Brasil
-          backgroundColor: 0x0b0b0b, // fundo quase preto
-          points: 14.00,
-          maxDistance: 22.00,
-          spacing: 18.00,
-          showDots: true,
+          mouseControls: true, touchControls: true, gyroControls: false,
+          minHeight: 200, minWidth: 200, scale: 1, scaleMobile: 1,
+          color: 0xF2A900, backgroundColor: 0x000000,
+          points: 14, maxDistance: 22, spacing: 18, showDots: true,
         });
       }
-
-      // Trigger fade-in-up animations after Vanta loads
       document.querySelectorAll('.animate-fade-in-up').forEach((el) => {
         const delay = parseInt(el.className.match(/delay-(\d+)/)?.[1] || 0);
         setTimeout(() => {
@@ -861,170 +1372,111 @@
       });
     });
 
-    // ============================================================
-    // CTA CANVAS — subtle background network (custom 2D)
-    // ============================================================
+    // CTA CANVAS — 3 tiers: slow dark, medium gold, fast bright
     (function () {
-      function initNetworkCanvas(canvasId) {
-        const canvas = document.getElementById(canvasId);
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
+      const canvas = document.getElementById('cta-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height, nodes;
+      const MAX_DIST = 140;
 
-        let width, height, nodes, animationId;
+      function resize() { width = canvas.width = canvas.offsetWidth; height = canvas.height = canvas.offsetHeight; }
 
-        const NODE_COUNT = 40;
-        const MAX_DIST = 160;
-        const GOLD = '#F2A900';
-        const SILVER = '#888888';
-
-        function resize() {
-          width = canvas.width = canvas.offsetWidth;
-          height = canvas.height = canvas.offsetHeight;
-        }
-
-        function createNode() {
-          const speed = 0.15 + Math.random() * 0.45; // Each node has its own speed
-          const angle = Math.random() * Math.PI * 2;
-          const isGold = Math.random() < 0.18; // ~18% gold nodes
-          const baseRadius = 1.5 + Math.random() * 3;
-          return {
-            x: Math.random() * width,
-            y: Math.random() * height,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed,
-            radius: baseRadius,
-            baseRadius: baseRadius,
-            targetRadius: baseRadius,
-            pulseTimer: Math.random() * 100,
-            pulseSpeed: 0.005 + Math.random() * 0.015,
-            isGold: isGold,
-            opacity: 0.4 + Math.random() * 0.6,
-            connectionOpacity: {}, // per-node connection fade state
-          };
-        }
-
-        function initNodes() {
-          nodes = [];
-          for (let i = 0; i < NODE_COUNT; i++) {
-            nodes.push(createNode());
-          }
-        }
-
-        function updateNode(node) {
-          node.x += node.vx;
-          node.y += node.vy;
-
-          // Wrap around edges softly
-          if (node.x < -20) node.x = width + 20;
-          if (node.x > width + 20) node.x = -20;
-          if (node.y < -20) node.y = height + 20;
-          if (node.y > height + 20) node.y = -20;
-
-          // Pulse radius (grow and shrink)
-          node.pulseTimer += node.pulseSpeed;
-          const pulse = Math.sin(node.pulseTimer);
-          node.radius = node.baseRadius + pulse * node.baseRadius * 0.5;
-        }
-
-        function drawConnections() {
-          for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-              const a = nodes[i];
-              const b = nodes[j];
-              const dx = a.x - b.x;
-              const dy = a.y - b.y;
-              const dist = Math.sqrt(dx * dx + dy * dy);
-
-              if (dist < MAX_DIST) {
-                const alpha = (1 - dist / MAX_DIST) * 0.4;
-                const useGold = a.isGold || b.isGold;
-                const color = useGold ? GOLD : SILVER;
-
-                ctx.save();
-                ctx.globalAlpha = alpha * Math.min(a.opacity, b.opacity);
-                ctx.strokeStyle = color;
-                ctx.lineWidth = useGold ? 0.8 : 0.5;
-                ctx.beginPath();
-                ctx.moveTo(a.x, a.y);
-                ctx.lineTo(b.x, b.y);
-                ctx.stroke();
-                ctx.restore();
-              }
-            }
-          }
-        }
-
-        function drawNodes() {
-          nodes.forEach(node => {
-            const color = node.isGold ? GOLD : SILVER;
-
-            // Outer glow for gold nodes
-            if (node.isGold) {
-              ctx.save();
-              ctx.globalAlpha = node.opacity * 0.15;
-              const grd = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.radius * 4);
-              grd.addColorStop(0, GOLD);
-              grd.addColorStop(1, 'transparent');
-              ctx.fillStyle = grd;
-              ctx.beginPath();
-              ctx.arc(node.x, node.y, node.radius * 4, 0, Math.PI * 2);
-              ctx.fill();
-              ctx.restore();
-            }
-
-            // Node circle
-            ctx.save();
-            ctx.globalAlpha = node.opacity;
-            ctx.fillStyle = color;
-            ctx.beginPath();
-            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-          });
-        }
-
-        function animate() {
-          ctx.clearRect(0, 0, width, height);
-          nodes.forEach(updateNode);
-          drawConnections();
-          drawNodes();
-          animationId = requestAnimationFrame(animate);
-        }
-
-        function start() {
-          resize();
-          initNodes();
-          animate();
-        }
-
-        window.addEventListener('resize', () => {
-          resize();
-        });
-
-        start();
+      function createNode(tier) {
+        const angle = Math.random() * Math.PI * 2;
+        // tier 0 = slow dark background dots (many)
+        // tier 1 = medium gold connecting dots
+        // tier 2 = fast bright accent dots (few, white/silver)
+        const configs = [
+          { speedMin: 0.06, speedMax: 0.18, radiusMin: 0.6, radiusMax: 1.8, color: '#F2A900', opacity: 0.20 + Math.random() * 0.25, bright: false },
+          { speedMin: 0.20, speedMax: 0.45, radiusMin: 1.0, radiusMax: 2.5, color: '#FFD166', opacity: 0.40 + Math.random() * 0.35, bright: false },
+          { speedMin: 0.55, speedMax: 0.90, radiusMin: 1.2, radiusMax: 2.0, color: '#ffffff', opacity: 0.55 + Math.random() * 0.40, bright: true },
+        ];
+        const c = configs[tier];
+        const speed = c.speedMin + Math.random() * (c.speedMax - c.speedMin);
+        const baseRadius = c.radiusMin + Math.random() * (c.radiusMax - c.radiusMin);
+        return {
+          x: Math.random() * width, y: Math.random() * height,
+          vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+          radius: baseRadius, baseRadius,
+          pulseTimer: Math.random() * 100,
+          pulseSpeed: 0.003 + Math.random() * (tier === 2 ? 0.025 : 0.012),
+          color: c.color, opacity: c.opacity, bright: c.bright, tier,
+        };
       }
 
-      // Init CTA canvas only (hero uses Vanta.js)
-      initNetworkCanvas('cta-canvas');
+      function initNodes() {
+        nodes = [];
+        // 28 slow, 14 medium gold, 8 fast bright
+        for (let i = 0; i < 28; i++) nodes.push(createNode(0));
+        for (let i = 0; i < 14; i++) nodes.push(createNode(1));
+        for (let i = 0; i < 8; i++) nodes.push(createNode(2));
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        nodes.forEach(n => {
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < -20) n.x = width + 20; if (n.x > width + 20) n.x = -20;
+          if (n.y < -20) n.y = height + 20; if (n.y > height + 20) n.y = -20;
+          n.pulseTimer += n.pulseSpeed;
+          n.radius = n.baseRadius + Math.sin(n.pulseTimer) * n.baseRadius * (n.tier === 2 ? 0.7 : 0.4);
+        });
+        // Draw connections (only between tier 0 and 1)
+        for (let i = 0; i < nodes.length; i++) {
+          if (nodes[i].tier === 2) continue;
+          for (let j = i + 1; j < nodes.length; j++) {
+            if (nodes[j].tier === 2) continue;
+            const a = nodes[i], b = nodes[j];
+            const dist = Math.hypot(a.x - b.x, a.y - b.y);
+            if (dist < MAX_DIST) {
+              const alpha = (1 - dist / MAX_DIST) * 0.28 * Math.min(a.opacity, b.opacity);
+              ctx.save();
+              ctx.globalAlpha = alpha;
+              ctx.strokeStyle = (a.tier === 1 || b.tier === 1) ? '#F2A900' : '#3a3a3a';
+              ctx.lineWidth = (a.tier === 1 || b.tier === 1) ? 0.6 : 0.4;
+              ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+              ctx.restore();
+            }
+          }
+        }
+        // Draw nodes
+        nodes.forEach(n => {
+          ctx.save();
+          // Glow for bright/fast nodes
+          if (n.bright) {
+            ctx.globalAlpha = n.opacity * 0.18;
+            const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius * 5);
+            grd.addColorStop(0, '#ffffff');
+            grd.addColorStop(1, 'transparent');
+            ctx.fillStyle = grd;
+            ctx.beginPath(); ctx.arc(n.x, n.y, n.radius * 5, 0, Math.PI * 2); ctx.fill();
+          }
+          // Core dot
+          ctx.globalAlpha = n.opacity;
+          ctx.fillStyle = n.color;
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2); ctx.fill();
+          ctx.restore();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      resize(); initNodes(); animate();
+      window.addEventListener('resize', () => { resize(); initNodes(); });
     })();
 
-    // ============================================================
-    // MOBILE MENU TOGGLE
-    // ============================================================
+    // MOBILE MENU
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIconOpen = document.getElementById('menu-icon-open');
     const menuIconClose = document.getElementById('menu-icon-close');
     let menuOpen = false;
-
     mobileMenuBtn.addEventListener('click', () => {
       menuOpen = !menuOpen;
       mobileMenu.classList.toggle('hidden', !menuOpen);
       menuIconOpen.classList.toggle('hidden', menuOpen);
       menuIconClose.classList.toggle('hidden', !menuOpen);
     });
-
-    // Close mobile menu on link click
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         menuOpen = false;
@@ -1034,80 +1486,233 @@
       });
     });
 
-    // ============================================================
-    // SCROLL REVEAL ANIMATION
-    // ============================================================
-    const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, 100);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    revealElements.forEach(el => observer.observe(el));
-
-    // ============================================================
-    // NAVBAR SCROLL EFFECT
-    // ============================================================
+    // NAVBAR SCROLL — transparent at top, blur + bg when scrolled
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
+    const navBar = navbar.querySelector('nav');
+    const navLogo = document.getElementById('nav-logo');
+
+    function updateNavbar() {
+      const scrolled = window.scrollY > 40;
+
+      if (scrolled) {
+        // Scrolled: semi-transparent dark bg + blur + border visible
+        navbar.style.background = 'rgba(0,0,0,0.72)';
+        navbar.style.backdropFilter = 'blur(18px)';
+        navbar.style.webkitBackdropFilter = 'blur(18px)';
+        navbar.style.boxShadow = '0 1px 0 rgba(255,255,255,0.07)';
+        navLogo.style.height = '44px';
+        // Also shrink the nav bar inner height
+        const inner = document.getElementById('nav-bar-inner');
+        if (inner) inner.style.minHeight = '64px';
       } else {
-        navbar.classList.remove('scrolled');
+        // Top: fully transparent, no blur
+        navbar.style.background = 'rgba(0,0,0,0)';
+        navbar.style.backdropFilter = 'blur(0px)';
+        navbar.style.webkitBackdropFilter = 'blur(0px)';
+        navbar.style.boxShadow = 'none';
+        navLogo.style.height = '72px';
+        const inner2 = document.getElementById('nav-bar-inner');
+        if (inner2) inner2.style.minHeight = '88px';
       }
-    });
-
-    // ============================================================
-    // HERO ANIMATION TRIGGER
-    // ============================================================
-    // Trigger fade-in-up animations
-    document.querySelectorAll('.animate-fade-in-up').forEach(el => {
-      el.style.opacity = '0';
-    });
-
-    window.addEventListener('load', () => {
-      document.querySelectorAll('.animate-fade-in-up').forEach((el, i) => {
-        const delay = parseInt(el.className.match(/delay-(\d+)/)?.[1] || 0);
-        setTimeout(() => {
-          el.style.opacity = '1';
-          el.style.animation = el.style.animation || 'fadeInUp 0.8s ease forwards';
-        }, delay);
-      });
-    });
-
-    // ============================================================
-    // COUNTER ANIMATION
-    // ============================================================
-    function animateCounter(el, target, suffix = '') {
-      let current = 0;
-      const step = target / 60;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = (target >= 100 ? '+' : '') + Math.floor(current) + suffix;
-        if (current >= target) clearInterval(timer);
-      }, 16);
     }
 
-    const statsObserver = new IntersectionObserver((entries) => {
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar(); // run once on load
+
+    // ============================================================
+    // STAGGERED SCROLL REVEAL — 4 directions
+    // ============================================================
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const counters = entry.target.querySelectorAll('[data-count]');
-          counters.forEach(counter => {
-            const target = parseInt(counter.dataset.count);
-            const suffix = counter.dataset.suffix || '';
-            animateCounter(counter, target, suffix);
-          });
-          statsObserver.unobserve(entry.target);
+          const delay = entry.target.dataset.delay ? parseInt(entry.target.dataset.delay) : 0;
+          setTimeout(() => entry.target.classList.add('visible'), 80 + delay);
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.07, rootMargin: '0px 0px -50px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ============================================================
+    // 3D CARD TILT — max 4deg, very subtle
+    // ============================================================
+    document.querySelectorAll('.card-hover').forEach(card => {
+      const MAX = 4;
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+        const dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+        card.style.transition = 'transform 0.1s, box-shadow 0.35s';
+        card.style.transform = 'translateY(-7px) perspective(900px) rotateX(' + (-dy * MAX) + 'deg) rotateY(' + (dx * MAX) + 'deg)';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.55s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s';
+        card.style.transform = '';
+      });
+    });
+
+    // ============================================================
+    // MAGNETIC BUTTONS — subtle cursor pull
+    // ============================================================
+    document.querySelectorAll('.btn-gold').forEach(btn => {
+      const S = 0.28;
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        btn.style.transition = 'transform 0.1s, box-shadow 0.3s, background 0.3s';
+        btn.style.transform = 'translateY(-2px) translate(' + (dx * S) + 'px,' + (dy * S) + 'px)';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transition = 'all 0.55s cubic-bezier(0.4,0,0.2,1)';
+        btn.style.transform = '';
+      });
+    });
+
+    // ============================================================
+    // CURSOR GLOW DOT — ambient gold, appears only below hero
+    // ============================================================
+    const glowDot = document.createElement('div');
+    Object.assign(glowDot.style, {
+      position: 'fixed', pointerEvents: 'none', zIndex: '9990',
+      width: '380px', height: '380px', borderRadius: '50%',
+      background: 'radial-gradient(circle, rgba(242,169,0,0.045) 0%, transparent 70%)',
+      transform: 'translate(-50%,-50%)',
+      transition: 'opacity 0.4s', opacity: '0',
+      top: '0', left: '0',
+    });
+    document.body.appendChild(glowDot);
+
+    let gx = 0, gy = 0, tx = 0, ty = 0;
+    const heroSection = document.querySelector('section');
+
+    document.addEventListener('mousemove', e => {
+      tx = e.clientX; ty = e.clientY;
+      const heroBottom = heroSection ? (heroSection.offsetHeight - window.scrollY) : 700;
+      glowDot.style.opacity = (e.clientY > heroBottom * 0.5) ? '1' : '0';
+    });
+    document.addEventListener('mouseleave', () => { glowDot.style.opacity = '0'; });
+
+    (function glowLoop() {
+      gx += (tx - gx) * 0.09;
+      gy += (ty - gy) * 0.09;
+      glowDot.style.left = gx + 'px';
+      glowDot.style.top = gy + 'px';
+      requestAnimationFrame(glowLoop);
+    })();
+
+    // ============================================================
+    // PARALLAX SCROLL — background images shift on scroll
+    // ============================================================
+    function doParallax() {
+      document.querySelectorAll('.parallax-frame .parallax-bg').forEach(bg => {
+        const section = bg.closest('.parallax-frame');
+        const rect = section.getBoundingClientRect();
+        const p = (window.innerHeight * 0.5 - rect.top) / (window.innerHeight + rect.height);
+        bg.style.transform = 'translateY(' + (p * 70) + 'px)';
+      });
+      // Método uses background-attachment:fixed — no JS parallax needed
+      const consultoria = document.getElementById('consultoria');
+      if (consultoria) {
+        const cImg = consultoria.querySelector('div[style*="z-index:0"] img');
+        if (cImg) {
+          const r = consultoria.getBoundingClientRect();
+          const p = (window.innerHeight * 0.5 - r.top) / (window.innerHeight + r.height);
+          cImg.style.transform = 'translateY(' + (p * 45) + 'px) scale(1.09)';
+        }
+      }
+      const acesso = document.getElementById('acesso');
+      if (acesso) {
+        const aImg = acesso.querySelector('img[src*="bg_cta"]');
+        if (aImg) {
+          const r = acesso.getBoundingClientRect();
+          const p = (window.innerHeight * 0.5 - r.top) / (window.innerHeight + r.height);
+          aImg.style.transform = 'translateY(' + (p * 35) + 'px) scale(1.06)';
+        }
+      }
+    }
+    window.addEventListener('scroll', doParallax, { passive: true });
+    doParallax();
+
+    // ============================================================
+    // ICON BOX — scale on parent card hover
+    // ============================================================
+    document.querySelectorAll('.card-hover').forEach(card => {
+      const icon = card.querySelector('.icon-box');
+      if (!icon) return;
+      card.addEventListener('mouseenter', () => {
+        icon.style.transition = 'transform 0.35s, box-shadow 0.35s';
+        icon.style.transform = 'scale(1.1)';
+        icon.style.boxShadow = '0 0 18px rgba(242,169,0,0.2)';
+      });
+      card.addEventListener('mouseleave', () => {
+        icon.style.transform = '';
+        icon.style.boxShadow = '';
+      });
+    });
+
+
+    // ============================================================
+    // MÉTODO SECTION — MOUSE SPOTLIGHT EFFECT
+    // ============================================================
+    //
+    // ┌─────────────────────────────────────────────────────────────────┐
+    // │  CONTROLES — edite os 3 valores abaixo:                        │
+    // │                                                                 │
+    // │  METODO_BASE   → visibilidade do bg LONGE do mouse             │
+    // │                  0  = fundo invisível (preto total)            │
+    // │                  100 = fundo 100% visível longe do mouse       │
+    // │                  Recomendado: 0 a 20                           │
+    // │                                                                 │
+    // │  METODO_SPOT   → visibilidade do bg NO CENTRO do spotlight     │
+    // │                  0  = fundo invisível no cursor (sem efeito)   │
+    // │                  100 = fundo 100% visível onde o mouse estiver │
+    // │                  Recomendado: 70 a 100                         │
+    // │                                                                 │
+    // │  METODO_RADIUS → tamanho do círculo de luz em pixels           │
+    // │                  Recomendado: 200 a 450                        │
+    // └─────────────────────────────────────────────────────────────────┘
+    const METODO_BASE = 0;    // % de visibilidade longe do mouse  (0=preto, 100=visível)
+    const METODO_SPOT = 30;   // % de visibilidade no centro/mouse (0=preto, 100=visível)
+    const METODO_RADIUS = 340;  // raio do spotlight em pixels
+
+    (function () {
+      // Converte % de visibilidade → opacidade do overlay (inverso)
+      // 0% visível = overlay opacity 1.0 (preto total)
+      // 100% visível = overlay opacity 0.0 (sem overlay)
+      function toOverlayOpacity(visibilityPercent) {
+        return 1 - Math.max(0, Math.min(100, visibilityPercent)) / 100;
+      }
+
+      const section = document.getElementById('metodo');
+      const overlay = document.getElementById('metodo-overlay');
+      if (!section || !overlay) return;
+
+      const baseOp = toOverlayOpacity(METODO_BASE);  // opacidade longe do mouse
+      const spotOp = toOverlayOpacity(METODO_SPOT);  // opacidade no cursor
+
+      // Estado inicial
+      overlay.style.background = 'rgba(0,0,0,' + baseOp + ')';
+
+      section.addEventListener('mousemove', e => {
+        const rect = section.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Gradiente radial: bg visível no cursor → escuro nas bordas
+        overlay.style.background =
+          'radial-gradient(circle ' + METODO_RADIUS + 'px at ' + x + 'px ' + y + 'px, ' +
+          'rgba(0,0,0,' + spotOp + ') 0%, ' +
+          'rgba(0,0,0,' + baseOp + ') 100%)';
+      });
+
+      section.addEventListener('mouseleave', () => {
+        overlay.style.background = 'rgba(0,0,0,' + baseOp + ')';
+      });
+    })();
 
   </script>
 </body>
+
 </html>
