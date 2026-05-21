@@ -44,6 +44,333 @@
     };
   </script>
   <style>
+    :root {
+      --bg-primary: #000000;
+      --bg-secondary: #070707;
+      --bg-card: #0d0d0d;
+      --bg-glass: rgba(10, 10, 10, 0.45);
+      --bg-glass-hover: rgba(15, 12, 5, 0.55);
+      
+      --text-primary: #ffffff;
+      --text-muted: #6b7080;
+      --text-muted-bright: #8a8f9e;
+      --text-medium: #c0c5d0;
+      --text-darker: #4a5060;
+      
+      --border-color: rgba(255, 255, 255, 0.07);
+      --border-card: rgba(242, 169, 0, 0.12);
+      --border-card-hover: rgba(242, 169, 0, 0.28);
+      
+      --filter-bg-img: none;
+      --filter-circuit: sepia(1) saturate(6) hue-rotate(5deg) brightness(1.1);
+      --blend-circuit: screen;
+      
+      --vanta-bg: 0x000000;
+      --vanta-color: 0xF2A900;
+    }
+
+    html[data-theme="light"] {
+      --bg-primary: #faf9f6;
+      --bg-secondary: #f4f3f0;
+      --bg-card: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.75);
+      --bg-glass-hover: rgba(255, 255, 255, 0.95);
+      
+      --text-primary: #111111;
+      --text-muted: #4b5060;
+      --text-muted-bright: #3a3f4e;
+      --text-medium: #222222;
+      --text-darker: #5a6070;
+      
+      --border-color: rgba(0, 0, 0, 0.08);
+      --border-card: rgba(242, 169, 0, 0.3);
+      --border-card-hover: rgba(242, 169, 0, 0.5);
+      
+      --filter-bg-img: invert(1) hue-rotate(180deg) brightness(1.05) contrast(1.05);
+      --filter-circuit: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.15) saturate(1.8);
+      --blend-circuit: multiply;
+      
+      --vanta-bg: 0xfaf9f6;
+      --vanta-color: 0xb58000;
+    }
+
+    /* General light overrides */
+    html[data-theme="light"] body {
+      background-color: var(--bg-primary) !important;
+      color: var(--text-primary) !important;
+    }
+    html[data-theme="light"] section {
+      background-color: var(--bg-primary) !important;
+    }
+    html[data-theme="light"] h1,
+    html[data-theme="light"] h2,
+    html[data-theme="light"] h3,
+    html[data-theme="light"] h4,
+    html[data-theme="light"] h5 {
+      color: var(--text-primary) !important;
+    }
+    html[data-theme="light"] p {
+      color: var(--text-muted) !important;
+    }
+    
+    /* Specific section fixes */
+    html[data-theme="light"] #navbar {
+      background: rgba(250, 249, 246, 0.8) !important;
+      backdrop-filter: blur(18px) !important;
+      -webkit-backdrop-filter: blur(18px) !important;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06) !important;
+    }
+    html[data-theme="light"] #navbar nav {
+      border-bottom-color: rgba(0, 0, 0, 0.05) !important;
+    }
+    html[data-theme="light"] .nav-link {
+      color: rgba(17, 17, 17, 0.75) !important;
+    }
+    html[data-theme="light"] .nav-link:hover {
+      color: #F2A900 !important;
+    }
+    
+    /* Vanta Hero overlays in light mode */
+    html[data-theme="light"] .hero-overlay {
+      background: linear-gradient(180deg, rgba(250, 249, 246, 0.1) 0%, rgba(250, 249, 246, 0.6) 50%, rgba(250, 249, 246, 1) 100%) !important;
+    }
+    html[data-theme="light"] section:has(#vanta-hero) p {
+      color: #222222 !important;
+    }
+    html[data-theme="light"] section:has(#vanta-hero) .text-xs.text-gray-400 {
+      color: #555555 !important;
+    }
+    html[data-theme="light"] section:has(#vanta-hero) .text-gray-600 {
+      color: #888888 !important;
+    }
+    
+    /* Forçar a seção O Método a manter o visual escuro original em ambos os temas */
+    html[data-theme="light"] #metodo {
+      background-color: transparent !important;
+    }
+    html[data-theme="light"] #metodo::before {
+      background-color: #000000 !important;
+    }
+    html[data-theme="light"] #metodo h2,
+    html[data-theme="light"] #metodo h3,
+    html[data-theme="light"] #metodo blockquote,
+    html[data-theme="light"] #metodo span:not([style*="color:#F2A900"]) {
+      color: #ffffff !important;
+    }
+    html[data-theme="light"] #metodo p {
+      color: #8a8f9e !important;
+    }
+    
+    /* Cursos Restritos circuit mask light theme override */
+    html[data-theme="light"] #circuito-mask {
+      background: linear-gradient(90deg, rgba(250,249,246,0) 0%, rgba(250,249,246,0.95) 100%) !important;
+    }
+    
+    /* Stats strip */
+    html[data-theme="light"] section:has(div[style*="Empresas Impactadas"]) {
+      background-color: var(--bg-secondary) !important;
+      border-top-color: var(--border-color) !important;
+      border-bottom-color: var(--border-color) !important;
+    }
+    html[data-theme="light"] div[style*="border-right:1px solid rgba(255,255,255,0.07)"] {
+      border-right-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    html[data-theme="light"] div[style*="color:#4a5060"] {
+      color: var(--text-muted) !important;
+    }
+    
+    /* Cursos / Ferramentas cards */
+    html[data-theme="light"] #cursos {
+      background-color: var(--bg-primary) !important;
+    }
+    html[data-theme="light"] #cursos .card-hover {
+      background: var(--bg-card) !important;
+      border-color: var(--border-color) !important;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03) !important;
+    }
+    html[data-theme="light"] #cursos .card-hover:hover {
+      border-color: var(--border-card-hover) !important;
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.06), 0 0 12px rgba(242, 169, 0, 0.05) !important;
+    }
+    html[data-theme="light"] #cursos span[style*="color:#fff"] {
+      color: var(--text-primary) !important;
+    }
+    html[data-theme="light"] #cursos p[style*="color:#4a5060"] {
+      color: var(--text-muted) !important;
+    }
+    
+    /* Consultoria */
+    html[data-theme="light"] #consultoria {
+      border-top-color: var(--border-color) !important;
+    }
+    html[data-theme="light"] #consultoria div[style*="background:#0d0d0d"] {
+      background: var(--bg-card) !important;
+      border-color: var(--border-color) !important;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03) !important;
+    }
+    html[data-theme="light"] #consultoria div[style*="background:#0d0d0d"] h4 {
+      color: var(--text-primary) !important;
+    }
+    html[data-theme="light"] #consultoria p[style*="color:#6b7080"] {
+      color: var(--text-muted) !important;
+    }
+    html[data-theme="light"] #consultoria p[style*="color:#c0c5d0"] {
+      color: var(--text-medium) !important;
+    }
+    html[data-theme="light"] #consultoria .reveal-right img {
+      filter: brightness(0.95) contrast(1.05) !important;
+    }
+    
+    /* Conteúdo Premium */
+    html[data-theme="light"] #conteudo .card-hover {
+      background: var(--bg-card) !important;
+      border-color: var(--border-color) !important;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03) !important;
+    }
+    html[data-theme="light"] #conteudo .card-hover:hover {
+      border-color: var(--border-card-hover) !important;
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.06) !important;
+    }
+    html[data-theme="light"] #conteudo h3 {
+      color: var(--text-primary) !important;
+    }
+    html[data-theme="light"] #conteudo p {
+      color: var(--text-muted) !important;
+    }
+    
+    /* CTA */
+    html[data-theme="light"] #acesso {
+      border-top-color: var(--border-color) !important;
+    }
+    html[data-theme="light"] #acesso p {
+      color: var(--text-muted) !important;
+    }
+    html[data-theme="light"] #acesso a[style*="border:1px solid rgba(255,255,255,0.15)"] {
+      border-color: rgba(0, 0, 0, 0.15) !important;
+      color: var(--text-muted) !important;
+    }
+    html[data-theme="light"] #acesso a[style*="border:1px solid rgba(255,255,255,0.15)"]:hover {
+      border-color: #F2A900 !important;
+      color: #F2A900 !important;
+    }
+    
+    /* Footer */
+    html[data-theme="light"] footer {
+      background: var(--bg-secondary) !important;
+      border-top-color: var(--border-color) !important;
+    }
+    html[data-theme="light"] footer p {
+      color: var(--text-muted) !important;
+    }
+    html[data-theme="light"] footer a {
+      color: var(--text-muted) !important;
+    }
+    html[data-theme="light"] footer h4 {
+      color: var(--text-primary) !important;
+    }
+    html[data-theme="light"] footer li {
+      color: var(--text-muted) !important;
+    }
+    html[data-theme="light"] footer [style*="border-top:1px solid rgba(255,255,255,0.06)"] {
+      border-top-color: var(--border-color) !important;
+    }
+    html[data-theme="light"] footer a[aria-label] {
+      border-color: rgba(0, 0, 0, 0.1) !important;
+      color: var(--text-muted) !important;
+    }
+    html[data-theme="light"] footer a[aria-label]:hover {
+      border-color: #F2A900 !important;
+      color: #F2A900 !important;
+    }
+    
+    /* Angled cuts and decorative lines */
+    html[data-theme="light"] .section-cut-bottom {
+      background: var(--bg-primary) !important;
+    }
+    
+    /* Images Inversion with pure CSS filter */
+    html[data-theme="light"] img[src*="bg_consultoria"],
+    html[data-theme="light"] img[src*="bg_cta"] {
+      filter: var(--filter-bg-img) !important;
+      opacity: 0.12 !important;
+    }
+    html[data-theme="light"] img[src*="circuito-animado"] {
+      filter: var(--filter-circuit) !important;
+      mix-blend-mode: var(--blend-circuit) !important;
+      opacity: 0.15 !important;
+    }
+
+    /* Reset inline background-image on #metodo and use pseudo-element for theme handling */
+    #metodo {
+      background-image: none !important;
+      position: relative;
+    }
+    #metodo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('img/bg_conect.png');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -2;
+      opacity: 1;
+      pointer-events: none;
+      transition: filter 0.4s ease;
+    }
+    #metodo-overlay {
+      z-index: -1 !important;
+    }
+
+
+    /* Theme Switcher Premium Style Overrides */
+    #theme-btn-desktop, #theme-btn-mobile {
+      color: var(--text-primary) !important;
+      border-color: var(--border-color) !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      outline: none;
+    }
+    html[data-theme="light"] #theme-btn-desktop, 
+    html[data-theme="light"] #theme-btn-mobile {
+      background: rgba(0, 0, 0, 0.03) !important;
+    }
+    #theme-btn-desktop:hover, #theme-btn-mobile:hover {
+      border-color: #F2A900 !important;
+      color: #F2A900 !important;
+      background: rgba(242, 169, 0, 0.08) !important;
+    }
+    #theme-dropdown-desktop, #theme-dropdown-mobile {
+      background: var(--bg-card) !important;
+      border: 1px solid var(--border-color) !important;
+    }
+    #theme-dropdown-desktop button, #theme-dropdown-mobile button {
+      color: var(--text-primary) !important;
+      background: transparent !important;
+      transition: all 0.2s ease;
+    }
+    #theme-dropdown-desktop button:hover, #theme-dropdown-mobile button:hover {
+      color: #F2A900 !important;
+      background: var(--bg-secondary) !important;
+    }
+    
+    /* Mobile Drawer theme adjustments */
+    html[data-theme="light"] #mobile-menu-theme-section {
+      border-top-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    html[data-theme="light"] #mobile-menu-theme-section span {
+      color: rgba(17, 17, 17, 0.45) !important;
+    }
+    html[data-theme="light"] #mobile-menu {
+      border-top-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    html[data-theme="light"] #mobile-menu a:not(.btn-gold) {
+      color: rgba(17, 17, 17, 0.75) !important;
+    }
+    html[data-theme="light"] #mobile-menu a:not(.btn-gold):hover {
+      color: #F2A900 !important;
+    }
+
     * {
       font-family: 'Montserrat', sans-serif;
     }
@@ -515,12 +842,48 @@
               style="font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.75); text-decoration:none; transition:color 0.3s;">Blog</a>
           </div>
 
+          <!-- Theme Switcher Desktop -->
+          <div class="hidden lg:flex items-center mr-4 relative" id="theme-container-desktop">
+            <button id="theme-btn-desktop" class="flex items-center justify-center w-10 h-10 rounded-full border border-white/10 hover:border-gold/50 transition-colors text-white" aria-label="Alterar tema" style="transition: all 0.3s ease;">
+              <!-- Injected by JS -->
+            </button>
+            <div id="theme-dropdown-desktop" class="hidden absolute right-0 top-12 w-36 rounded-sm shadow-2xl py-1 z-50 transition-all duration-300" style="background: var(--bg-card); border-color: var(--border-color); border-width: 1px;">
+              <button onclick="setTheme('light')" class="w-full text-left px-4 py-2.5 text-[10px] uppercase tracking-widest font-bold text-gray-300 hover:text-gold hover:bg-white/5 flex items-center gap-2 transition-colors" style="color: var(--text-primary);">
+                ☀️ Claro
+              </button>
+              <button onclick="setTheme('dark')" class="w-full text-left px-4 py-2.5 text-[10px] uppercase tracking-widest font-bold text-gray-300 hover:text-gold hover:bg-white/5 flex items-center gap-2 transition-colors" style="color: var(--text-primary);">
+                🌙 Escuro
+              </button>
+              <button onclick="setTheme('auto')" class="w-full text-left px-4 py-2.5 text-[10px] uppercase tracking-widest font-bold text-gray-300 hover:text-gold hover:bg-white/5 flex items-center gap-2 transition-colors" style="color: var(--text-primary);">
+                💻 Auto
+              </button>
+            </div>
+          </div>
+
           <!-- CTA Button -->
           <div class="hidden lg:flex items-center">
             <a href="#area-aluno" id="nav-cta"
               class="btn-gold px-6 py-3 text-xs font-bold tracking-widest2 uppercase rounded-sm">
               Área do Aluno
             </a>
+          </div>
+
+          <!-- Theme Switcher Mobile -->
+          <div class="lg:hidden flex items-center mr-2 relative" id="theme-container-mobile">
+            <button id="theme-btn-mobile" class="flex items-center justify-center w-9 h-9 rounded-full border border-white/10 hover:border-gold/50 transition-colors text-white" aria-label="Alterar tema" style="transition: all 0.3s ease;">
+              <!-- Injected by JS -->
+            </button>
+            <div id="theme-dropdown-mobile" class="hidden absolute right-0 top-11 w-32 rounded-sm shadow-2xl py-1 z-50 transition-all duration-300" style="background: var(--bg-card); border-color: var(--border-color); border-width: 1px;">
+              <button onclick="setTheme('light')" class="w-full text-left px-3.5 py-2 text-[9px] uppercase tracking-widest font-bold text-gray-300 hover:text-gold hover:bg-white/5 flex items-center gap-2 transition-colors" style="color: var(--text-primary);">
+                ☀️ Claro
+              </button>
+              <button onclick="setTheme('dark')" class="w-full text-left px-3.5 py-2 text-[9px] uppercase tracking-widest font-bold text-gray-300 hover:text-gold hover:bg-white/5 flex items-center gap-2 transition-colors" style="color: var(--text-primary);">
+                🌙 Escuro
+              </button>
+              <button onclick="setTheme('auto')" class="w-full text-left px-3.5 py-2 text-[9px] uppercase tracking-widest font-bold text-gray-300 hover:text-gold hover:bg-white/5 flex items-center gap-2 transition-colors" style="color: var(--text-primary);">
+                💻 Auto
+              </button>
+            </div>
           </div>
 
           <!-- Mobile Menu Button -->
@@ -556,6 +919,22 @@
           <a href="#area-aluno"
             class="btn-gold w-full text-center px-6 py-3 text-xs font-bold tracking-widest2 uppercase rounded-sm mt-2">Área
             do Aluno</a>
+            
+          <!-- Mobile Menu Theme Toggle (Clear & Prominent) -->
+          <div class="border-t border-white/10 pt-4 mt-2 flex flex-col gap-2" id="mobile-menu-theme-section">
+            <span class="text-[9px] font-bold uppercase tracking-widest text-gray-400">Tema do Site</span>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setTheme('light')" class="py-2 text-[10px] uppercase tracking-widest font-bold rounded-sm border border-white/10 flex items-center justify-center gap-1 hover:border-gold/50 transition-colors" style="color: var(--text-primary); background: var(--bg-card); border-color: var(--border-color);">
+                ☀️ Claro
+              </button>
+              <button onclick="setTheme('dark')" class="py-2 text-[10px] uppercase tracking-widest font-bold rounded-sm border border-white/10 flex items-center justify-center gap-1 hover:border-gold/50 transition-colors" style="color: var(--text-primary); background: var(--bg-card); border-color: var(--border-color);">
+                🌙 Escuro
+              </button>
+              <button onclick="setTheme('auto')" class="py-2 text-[10px] uppercase tracking-widest font-bold rounded-sm border border-white/10 flex items-center justify-center gap-1 hover:border-gold/50 transition-colors" style="color: var(--text-primary); background: var(--bg-card); border-color: var(--border-color);">
+                💻 Auto
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -630,7 +1009,7 @@
   ">
     <!-- Dark overlay so the circuit doesn't overpower -->
     <div id="metodo-overlay"
-      style="position:absolute; inset:0; background:rgba(0,0,0,0.58); pointer-events:none; z-index:0; transition:background 0.1s;">
+      style="position:absolute; inset:0; background:rgba(0,0,0,0.58); pointer-events:none; z-index:0;">
     </div>
     <div style="max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:1;">
 
@@ -809,7 +1188,7 @@
       overflow: hidden;
     ">
       <!-- Máscara: desvanesce para a direita, mantém colado na borda esquerda -->
-      <div style="
+      <div id="circuito-mask" style="
         position: absolute;
         inset: 0;
         background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%);
@@ -1355,11 +1734,13 @@
     // VANTA.NET
     window.addEventListener('load', function () {
       if (typeof VANTA !== 'undefined' && VANTA.NET) {
-        VANTA.NET({
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        window.vantaEffect = VANTA.NET({
           el: '#vanta-hero',
           mouseControls: true, touchControls: true, gyroControls: false,
           minHeight: 200, minWidth: 200, scale: 1, scaleMobile: 1,
-          color: 0xF2A900, backgroundColor: 0x000000,
+          color: isLight ? 0xb58000 : 0xF2A900,
+          backgroundColor: isLight ? 0xfaf9f6 : 0x000000,
           points: 14, maxDistance: 22, spacing: 18, showDots: true,
         });
       }
@@ -1415,6 +1796,7 @@
 
       function animate() {
         ctx.clearRect(0, 0, width, height);
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
         nodes.forEach(n => {
           n.x += n.vx; n.y += n.vy;
           if (n.x < -20) n.x = width + 20; if (n.x > width + 20) n.x = -20;
@@ -1433,7 +1815,7 @@
               const alpha = (1 - dist / MAX_DIST) * 0.28 * Math.min(a.opacity, b.opacity);
               ctx.save();
               ctx.globalAlpha = alpha;
-              ctx.strokeStyle = (a.tier === 1 || b.tier === 1) ? '#F2A900' : '#3a3a3a';
+              ctx.strokeStyle = (a.tier === 1 || b.tier === 1) ? '#F2A900' : (isLight ? '#cccccc' : '#3a3a3a');
               ctx.lineWidth = (a.tier === 1 || b.tier === 1) ? 0.6 : 0.4;
               ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
               ctx.restore();
@@ -1443,18 +1825,19 @@
         // Draw nodes
         nodes.forEach(n => {
           ctx.save();
+          const nodeColor = n.tier === 2 ? (isLight ? '#111111' : '#ffffff') : n.color;
           // Glow for bright/fast nodes
           if (n.bright) {
             ctx.globalAlpha = n.opacity * 0.18;
             const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius * 5);
-            grd.addColorStop(0, '#ffffff');
+            grd.addColorStop(0, nodeColor);
             grd.addColorStop(1, 'transparent');
             ctx.fillStyle = grd;
             ctx.beginPath(); ctx.arc(n.x, n.y, n.radius * 5, 0, Math.PI * 2); ctx.fill();
           }
           // Core dot
           ctx.globalAlpha = n.opacity;
-          ctx.fillStyle = n.color;
+          ctx.fillStyle = nodeColor;
           ctx.beginPath(); ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2); ctx.fill();
           ctx.restore();
         });
@@ -1674,7 +2057,7 @@
     // │                  Recomendado: 200 a 450                        │
     // └─────────────────────────────────────────────────────────────────┘
     const METODO_BASE = 0;    // % de visibilidade longe do mouse  (0=preto, 100=visível)
-    const METODO_SPOT = 30;   // % de visibilidade no centro/mouse (0=preto, 100=visível)
+    const METODO_SPOT = 20;   // % de visibilidade no centro/mouse (0=preto, 100=visível)
     const METODO_RADIUS = 340;  // raio do spotlight em pixels
 
     (function () {
@@ -1685,6 +2068,11 @@
         return 1 - Math.max(0, Math.min(100, visibilityPercent)) / 100;
       }
 
+      function getOverlayColor(op) {
+        // A seção Método agora permanece com o visual escuro premium original em ambos os temas
+        return 'rgba(0,0,0,' + op + ')';
+      }
+
       const section = document.getElementById('metodo');
       const overlay = document.getElementById('metodo-overlay');
       if (!section || !overlay) return;
@@ -1693,24 +2081,123 @@
       const spotOp = toOverlayOpacity(METODO_SPOT);  // opacidade no cursor
 
       // Estado inicial
-      overlay.style.background = 'rgba(0,0,0,' + baseOp + ')';
+      overlay.style.background = getOverlayColor(baseOp);
 
       section.addEventListener('mousemove', e => {
         const rect = section.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
+        // Desativa a interação com o mouse nas bordas da seção (margem de segurança de 40px)
+        const margin = 40;
+        if (x < margin || x > rect.width - margin || y < margin || y > rect.height - margin) {
+          overlay.style.background = getOverlayColor(baseOp);
+          return;
+        }
+
         // Gradiente radial: bg visível no cursor → escuro nas bordas
         overlay.style.background =
           'radial-gradient(circle ' + METODO_RADIUS + 'px at ' + x + 'px ' + y + 'px, ' +
-          'rgba(0,0,0,' + spotOp + ') 0%, ' +
-          'rgba(0,0,0,' + baseOp + ') 100%)';
+          getOverlayColor(spotOp) + ' 0%, ' +
+          getOverlayColor(baseOp) + ' 100%)';
       });
 
       section.addEventListener('mouseleave', () => {
-        overlay.style.background = 'rgba(0,0,0,' + baseOp + ')';
+        overlay.style.background = getOverlayColor(baseOp);
       });
+
+      // Tornar a função global para atualizar o tema externamente
+      window.refreshMetodoOverlay = function() {
+        overlay.style.background = getOverlayColor(baseOp);
+      };
     })();
+
+    // ============================================================
+    // LOGICA DE TEMA (CLARO / ESCURO / AUTO)
+    // ============================================================
+    const SUN_SVG = `<svg class="w-5 h-5 transition-transform duration-300 hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>`;
+    const MOON_SVG = `<svg class="w-5 h-5 transition-transform duration-500 hover:-rotate-12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>`;
+    const AUTO_SVG = `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`;
+
+    window.setTheme = function(theme) {
+      localStorage.setItem('theme', theme);
+      applyTheme(theme);
+    };
+
+    function applyTheme(theme) {
+      let activeTheme = theme;
+      if (theme === 'auto') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        activeTheme = prefersDark ? 'dark' : 'light';
+      }
+
+      if (activeTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+
+      // Atualizar os botões / ícones principais
+      const btnDesktop = document.getElementById('theme-btn-desktop');
+      const btnMobile = document.getElementById('theme-btn-mobile');
+      
+      let activeIcon = AUTO_SVG;
+      if (theme === 'light') activeIcon = SUN_SVG;
+      else if (theme === 'dark') activeIcon = MOON_SVG;
+      
+      if (btnDesktop) btnDesktop.innerHTML = activeIcon;
+      if (btnMobile) btnMobile.innerHTML = activeIcon;
+
+      // Atualizar Vanta.js NET se ativo
+      if (typeof vantaEffect !== 'undefined' && vantaEffect) {
+        vantaEffect.setOptions({
+          backgroundColor: activeTheme === 'light' ? 0xfaf9f6 : 0x000000,
+          color: activeTheme === 'light' ? 0xb58000 : 0xF2A900
+        });
+      } else if (window.vantaEffect) {
+        window.vantaEffect.setOptions({
+          backgroundColor: activeTheme === 'light' ? 0xfaf9f6 : 0x000000,
+          color: activeTheme === 'light' ? 0xb58000 : 0xF2A900
+        });
+      }
+
+      // Forçar atualização do holofote do Método e parallax
+      if (window.refreshMetodoOverlay) {
+        window.refreshMetodoOverlay();
+      }
+      
+      // Fechar dropdowns
+      document.getElementById('theme-dropdown-desktop')?.classList.add('hidden');
+      document.getElementById('theme-dropdown-mobile')?.classList.add('hidden');
+    }
+
+    // Configurar escuta do sistema para modo Auto
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      const storedTheme = localStorage.getItem('theme') || 'auto';
+      if (storedTheme === 'auto') {
+        applyTheme('auto');
+      }
+    });
+
+    // Lógica de cliques para abrir os dropdowns
+    document.getElementById('theme-btn-desktop')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('theme-dropdown-desktop')?.classList.toggle('hidden');
+    });
+
+    document.getElementById('theme-btn-mobile')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('theme-dropdown-mobile')?.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', () => {
+      document.getElementById('theme-dropdown-desktop')?.classList.add('hidden');
+      document.getElementById('theme-dropdown-mobile')?.classList.add('hidden');
+    });
+
+    // Inicializar tema no carregamento
+    const initialTheme = localStorage.getItem('theme') || 'auto';
+    applyTheme(initialTheme);
 
   </script>
 </body>
