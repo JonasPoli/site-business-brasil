@@ -798,6 +798,18 @@
     #metodo p[style*="color:#7a7f8e"] {
       color: #8a8f9e !important;
     }
+
+    /* Inversão do logo no modo dark (padrão) */
+    #nav-logo,
+    footer img[src*="logo"] {
+      filter: invert(1);
+      transition: filter 0.4s ease, height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html[data-theme="light"] #nav-logo,
+    html[data-theme="light"] footer img[src*="logo"] {
+      filter: none;
+    }
   </style>
 </head>
 
@@ -816,12 +828,12 @@
     <nav style="border-bottom: 1px solid rgba(255,255,255,0);">
       <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div class="flex items-center justify-between"
-          style="min-height:88px; transition: min-height 0.4s cubic-bezier(0.4,0,0.2,1);" id="nav-bar-inner">
+          style="min-height:112px; transition: min-height 0.4s cubic-bezier(0.4,0,0.2,1);" id="nav-bar-inner">
 
           <!-- Logo -->
           <a href="#" class="flex-shrink-0 flex items-center gap-3">
             <img src="logo.jpeg" alt="Business Brasil Logo" id="nav-logo"
-              style="height:72px; width:auto; transition: height 0.4s cubic-bezier(0.4,0,0.2,1);" />
+              style="height:96px; width:auto; transition: height 0.4s cubic-bezier(0.4,0,0.2,1);" />
           </a>
 
           <!-- Desktop Nav Links -->
@@ -1024,8 +1036,8 @@
         <div
           style="width:48px; height:3px; background:linear-gradient(90deg,#F2A900,#FFD166); border-radius:2px; margin:0 auto 20px; box-shadow:0 0 10px rgba(242,169,0,0.5);">
         </div>
-        <p style="font-size:15px; color:#7a7f8e; line-height:1.7; max-width:560px; margin:0 auto; font-weight:400;">
-          Construído a partir de experiências reais em gestão, liderança, turnaround e crescimento sustentável.
+        <p style="font-size:15px; color:#7a7f8e; line-height:1.7; max-width:800px; margin:0 auto; font-weight:400;">
+          Nosso método foi desenvolvido a partir de experiências reais em gestão corporativa, liderança, turnaround, cultura empresarial, posicionamento estratégico e crescimento sustentável. Cada framework, módulo e conteúdo foi projetado para gerar clareza analítica, acelerar a tomada de decisões e transformar empresas de forma prática e mensurável.
         </p>
       </div>
 
@@ -1046,8 +1058,7 @@
           <h3
             style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 12px 0;">
             Foco na Prática</h3>
-          <p style="font-size:14px; color:#6b7080; line-height:1.7; margin:0 0 20px 0;">Frameworks e módulos
-            desenvolvidos para gerar clareza e acelerar decisões no dia a dia da gestão.</p>
+          <p style="font-size:14px; color:#6b7080; line-height:1.7; margin:0 0 20px 0;">Frameworks e módulos projetados para assegurar clareza operacional e acelerar a tomada de decisões corporativas.</p>
           <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
             <span
               style="font-size:11px; font-weight:700; color:#F2A900; letter-spacing:0.15em; text-transform:uppercase;">→
@@ -1067,8 +1078,7 @@
           <h3
             style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 12px 0;">
             Resultados Reais</h3>
-          <p style="font-size:14px; color:#6b7080; line-height:1.7; margin:0 0 20px 0;">Turnaround, cultura,
-            posicionamento e crescimento. Cada conteúdo foi testado em empresas reais.</p>
+          <p style="font-size:14px; color:#6b7080; line-height:1.7; margin:0 0 20px 0;">Turnaround, cultura, posicionamento estratégico e crescimento sustentável validados no ambiente empresarial real.</p>
           <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
             <span
               style="font-size:11px; font-weight:700; color:#F2A900; letter-spacing:0.15em; text-transform:uppercase;">→
@@ -1089,8 +1099,7 @@
           <h3
             style="font-size:13px; font-weight:700; color:#ffffff; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 12px 0;">
             Pensar Como Dono</h3>
-          <p style="font-size:14px; color:#6b7080; line-height:1.7; margin:0 0 20px 0;">Liderar com estratégia,
-            construir equipes fortes e aumentar produtividade com mentalidade de dono.</p>
+          <p style="font-size:14px; color:#6b7080; line-height:1.7; margin:0 0 20px 0;">Desenvolvimento de liderança estratégica, consolidação de equipes de alta performance e aumento de produtividade.</p>
           <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
             <span
               style="font-size:11px; font-weight:700; color:#F2A900; letter-spacing:0.15em; text-transform:uppercase;">→
@@ -1107,13 +1116,13 @@
             style="font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; display:block; margin-bottom:16px;">A
             Filosofia</span>
           <blockquote
-            style="font-size:28px; font-weight:800; color:#ffffff; line-height:1.2; letter-spacing:-0.02em; text-transform:uppercase; margin:0;">
-            "Conhecimento sem aplicação prática é apenas entretenimento."</blockquote>
+            style="font-size:24px; font-weight:800; color:#ffffff; line-height:1.3; letter-spacing:-0.02em; text-transform:uppercase; margin:0;">
+            "No Business Brasil, acreditamos que conhecimento sem aplicação prática é apenas entretenimento."</blockquote>
         </div>
         <div>
-          <p style="font-size:15px; color:#7a7f8e; line-height:1.75; margin:0 0 28px 0;">Aqui, você aprende a pensar
-            como dono, liderar com estratégia, construir equipes fortes, aumentar produtividade e criar uma operação
-            mais eficiente, organizada e lucrativa.</p>
+          <p style="font-size:15px; color:#7a7f8e; line-height:1.75; margin:0 0 28px 0;">
+            Aqui, você é capacitado a pensar com mentalidade de dono, liderar de forma estratégica, construir equipes de alto desempenho, aumentar a produtividade operacional, elevar a percepção de valor da sua marca e estruturar uma operação altamente eficiente, organizada e lucrativa.
+          </p>
           <a href="#acesso" class="btn-gold"
             style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; border-radius:4px; text-decoration:none;">
             Solicitar Acesso
@@ -1403,15 +1412,13 @@
             style="width:48px; height:3px; background:linear-gradient(90deg,#F2A900,#FFD166); border-radius:2px; margin-bottom:28px; box-shadow:0 0 10px rgba(242,169,0,0.4);">
           </div>
           <p style="font-size:15px; color:#6b7080; line-height:1.75; margin:0 0 16px 0;">
-            A consultoria do Business Brasil existe para empresários, gestores e empresas que desejam implementar, na
-            prática, aquilo que é apresentado nos cursos, conteúdos e frameworks.
+            A consultoria do Business Brasil é direcionada a empresários, executivos e organizações que buscam implementar, de forma prática e personalizada, as metodologias, conteúdos e frameworks apresentados em nossos programas.
           </p>
           <p style="font-size:15px; color:#6b7080; line-height:1.75; margin:0 0 16px 0;">
-            Entregamos diagnósticos empresariais, desenvolvemos estratégias personalizadas para melhorar gestão,
-            cultura, produtividade, posicionamento e performance financeira.
+            Desenvolvemos diagnósticos corporativos profundos e estruturamos estratégias sob medida para otimizar a gestão, fortalecer a cultura organizacional, maximizar a produtividade, refinar o posicionamento, aprimorar a experiência do cliente e alavancar a performance financeira.
           </p>
           <p style="font-size:15px; color:#c0c5d0; line-height:1.75; margin:0 0 36px 0; font-weight:600;">
-            Os conteúdos mostram o caminho. A consultoria acelera a execução.
+            Nossos esforços são focados em consolidar empresas em operações robustas, organizadas, altamente valorizadas e lucrativas. Os conteúdos teóricos apontam a direção; a consultoria acelera e consolida a execução.
           </p>
           <a href="#acesso" class="btn-gold"
             style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; border-radius:4px; text-decoration:none;">
@@ -1490,21 +1497,34 @@
 
       <!-- Header -->
       <div class="reveal"
-        style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:56px;">
-        <div>
-          <span
-            style="display:block; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; margin-bottom:12px;">Biblioteca
-            Exclusiva</span>
-          <h2
-            style="font-size:42px; font-weight:800; color:#ffffff; letter-spacing:-0.02em; line-height:1.15; text-transform:uppercase; margin:0 0 16px 0;">
-            Conteúdo Premium</h2>
-          <div
-            style="width:48px; height:3px; background:linear-gradient(90deg,#F2A900,#FFD166); border-radius:2px; box-shadow:0 0 10px rgba(242,169,0,0.4);">
+        style="margin-bottom:56px;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px;">
+          <div>
+            <span
+              style="display:block; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#F2A900; text-transform:uppercase; margin-bottom:12px;">Biblioteca
+              Exclusiva</span>
+            <h2
+              style="font-size:42px; font-weight:800; color:#ffffff; letter-spacing:-0.02em; line-height:1.15; text-transform:uppercase; margin:0 0 16px 0;">
+              Conteúdo Premium</h2>
+            <div
+              style="width:48px; height:3px; background:linear-gradient(90deg,#F2A900,#FFD166); border-radius:2px; box-shadow:0 0 10px rgba(242,169,0,0.4);">
+            </div>
           </div>
+          <a href="#"
+            style="font-size:11px; font-weight:700; color:#4a5060; letter-spacing:0.2em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px;">Ver
+            Todo Conteúdo</a>
         </div>
-        <a href="#"
-          style="font-size:11px; font-weight:700; color:#4a5060; letter-spacing:0.2em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px;">Ver
-          Todo Conteúdo</a>
+        <div style="max-width:850px; display:grid; grid-template-columns:1fr; gap:16px;">
+          <p style="font-size:15px; color:#6b7080; line-height:1.75; margin:0;">
+            O ecossistema de conteúdo do Business Brasil consolida vídeos de alta qualidade, artigos aprofundados, insights estratégicos, recortes direcionados, frameworks de gestão, estudos de caso e análises técnicas sobre liderança, cultura, vendas, posicionamento de mercado e produtividade.
+          </p>
+          <p style="font-size:15px; color:#6b7080; line-height:1.75; margin:0;">
+            Trata-se de um espaço projetado para gerar valor contínuo, consolidar a autoridade de sua marca e evidenciar, na prática, como ajustes refinados de postura corporativa, processos e mentalidade de gestão produzem resultados de alto impacto.
+          </p>
+          <p style="font-size:15px; color:#c0c5d0; line-height:1.75; margin:0; font-weight:600;">
+            Mais do que produzir conteúdo, nosso objetivo é formar gestores altamente capacitados a pensar estrategicamente, liderar com excelência e construir empresas de alto impacto.
+          </p>
+        </div>
       </div>
 
       <!-- 3 Content Cards -->
@@ -1607,8 +1627,7 @@
         style="font-size:48px; font-weight:800; color:#ffffff; letter-spacing:-0.02em; line-height:1.1; text-transform:uppercase; margin:0 0 20px 0;">
         Pronto para Transformar<br>sua Empresa?</h2>
       <p style="font-size:15px; color:#6b7080; line-height:1.75; margin:0 0 40px 0;">
-        Nosso objetivo é transformar empresas em operações mais fortes, organizadas, desejadas e lucrativas. Acesso
-        restrito. Apenas para quem leva o negócio a sério.
+        Nosso objetivo é consolidar empresas em operações robustas, organizadas, altamente valorizadas e lucrativas. O acesso à plataforma é restrito, direcionado exclusivamente a quem conduz seus negócios com máxima seriedade e visão de futuro.
       </p>
       <div style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
         <a href="#" class="btn-gold"
@@ -1883,7 +1902,7 @@
         navbar.style.backdropFilter = 'blur(18px)';
         navbar.style.webkitBackdropFilter = 'blur(18px)';
         navbar.style.boxShadow = '0 1px 0 rgba(255,255,255,0.07)';
-        navLogo.style.height = '44px';
+        navLogo.style.height = '48px';
         // Also shrink the nav bar inner height
         const inner = document.getElementById('nav-bar-inner');
         if (inner) inner.style.minHeight = '64px';
@@ -1893,9 +1912,9 @@
         navbar.style.backdropFilter = 'blur(0px)';
         navbar.style.webkitBackdropFilter = 'blur(0px)';
         navbar.style.boxShadow = 'none';
-        navLogo.style.height = '72px';
+        navLogo.style.height = '96px';
         const inner2 = document.getElementById('nav-bar-inner');
-        if (inner2) inner2.style.minHeight = '88px';
+        if (inner2) inner2.style.minHeight = '112px';
       }
     }
 
